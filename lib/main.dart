@@ -1,3 +1,5 @@
+import 'package:bankemployers/features/home/admin_dashboard.dart';
+import 'package:bankemployers/features/home/home_view.dart';
 import 'package:bankemployers/features/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home:  SplashScreen(),
+      home:  EmployeesScreen(),
     );
   }
 }
