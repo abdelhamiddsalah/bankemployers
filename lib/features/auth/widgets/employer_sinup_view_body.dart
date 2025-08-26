@@ -1,7 +1,7 @@
-import 'package:bankemployers/features/auth/auth_view.dart';
 import 'package:bankemployers/features/auth/widgets/animated_backround.dart';
 import 'package:bankemployers/features/auth/widgets/contact_info_in_employer_sinup.dart';
 import 'package:bankemployers/features/auth/widgets/employer_info_in_sinup.dart';
+import 'package:bankemployers/features/auth/widgets/employers_sinin_view_body.dart';
 import 'package:bankemployers/features/auth/widgets/left_side_in_employer_signup.dart';
 import 'package:bankemployers/features/auth/widgets/peronal_info_in_employer_signup.dart';
 import 'package:bankemployers/features/auth/widgets/step_naviation_buttons.dart';
@@ -83,7 +83,7 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
         onGoToSignIn: () {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => EmployeeAuthScreen(),
+              builder: (context) => EmployersSininViewBody(),
             ),
           );
         },
