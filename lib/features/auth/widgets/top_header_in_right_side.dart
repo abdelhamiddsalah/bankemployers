@@ -1,5 +1,5 @@
-import 'package:bankemployers/features/auth/auth_view.dart';
 import 'package:bankemployers/core/styling/colors.dart';
+import 'package:bankemployers/features/auth/widgets/employers_sinin_view_body.dart';
 import 'package:flutter/material.dart';
 
 class TopHeaderInRightSide extends StatelessWidget {
@@ -38,7 +38,7 @@ class TopHeaderInRightSide extends StatelessWidget {
             ],
           ),
           TextButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EmployeeAuthScreen())),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EmployersSininViewBody())),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
