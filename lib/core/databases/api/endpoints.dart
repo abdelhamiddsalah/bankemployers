@@ -10,4 +10,5 @@ class Endpoints {
   }
 
   static const String signupAdmin = "registerAdmin";
+  static const String allEmployers = "admin/allEmployers";
 }

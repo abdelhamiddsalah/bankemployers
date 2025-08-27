@@ -60,7 +60,6 @@ class SearchAndSort extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 12),
-
               // Sort Button
               Container(
                 decoration: BoxDecoration(

@@ -29,28 +29,25 @@ class EmployeeListCard extends StatelessWidget {
             padding: EdgeInsets.all(16),
             child: Row(
               children: [
-                Hero(
-                  tag: 'avatar_${'id'}',
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                        maincolor.withOpacity(0.8),
-                         maincolor
-                        ],
-                      ),
-                      shape: BoxShape.circle,
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                      maincolor.withOpacity(0.8),
+                       maincolor
+                      ],
                     ),
-                    child: Center(
-                      child: Text(
-                        'AB',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      'AB',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -71,24 +68,6 @@ class EmployeeListCard extends StatelessWidget {
                                 color: Colors.grey[800],
                               ),
                               overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: maincolor,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              'status',
-                              style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w600,
-                                color: maincolor
-                              ),
                             ),
                           ),
                         ],
@@ -131,24 +110,7 @@ class EmployeeListCard extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: 16),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                size: 14,
-                                color: Colors.amber,
-                              ),
-                              SizedBox(width: 2),
-                              Text(
-                                '${['performance']}',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                            ],
-                          ),
+                         
                         ],
                       ),
                     ],
@@ -198,20 +160,6 @@ class EmployeeListCard extends StatelessWidget {
                           ),
                           SizedBox(width: 8),
                           Text('Send Message'),
-                        ],
-                      ),
-                    ),
-                    PopupMenuItem(
-                      value: 'call',
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.phone,
-                            color: Colors.indigo,
-                            size: 20,
-                          ),
-                          SizedBox(width: 8),
-                          Text('Call'),
                         ],
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:bankemployers/core/widgets/custom_textfield.dart';
 import 'package:bankemployers/features/admin/view/widgets/admin_button_signup.dart';
 import 'package:bankemployers/features/admin/viewmodel/cubits/admin/admin_cubit.dart';
+import 'package:bankemployers/features/home/admin_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -86,20 +87,7 @@ class AdminLoginForm extends StatelessWidget {
                 BlocConsumer<AdminCubit, AdminState>(
                   listener: (context, state) {
                     if (state is AdminLoaded) {
-                      // عند نجاح العملية
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            state.message, 
-                            style: TextStyle(color: Colors.white)
-                          ), 
-                          backgroundColor: Colors.green,
-                          duration: Duration(seconds: 3),
-                        ),
-                      );
-                      
-                      // يمكنك إضافة navigation هنا إلى الصفحة التالية
-                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminDashboard()));
+                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminDashboard()));
                     }
                     if (state is AdminError) {
                       // عند حدوث خطأ
@@ -127,8 +115,7 @@ class AdminLoginForm extends StatelessWidget {
                       onPressed: () {
                         if (context.read<AdminCubit>().formKey.currentState!.validate()) {
                           final email = context.read<AdminCubit>().emailController.text.trim();
-                          final password = context.read<AdminCubit>().passwordController.text.trim();
-                          
+                          final password = context.read<AdminCubit>().passwordController.text.trim();                      
                           context.read<AdminCubit>().signupAdmin(email, password);
                         }
                       },

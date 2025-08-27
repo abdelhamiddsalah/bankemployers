@@ -42,6 +42,8 @@ dependencies:
   logger: ^2.6.1
   dartz: ^0.10.1
   connectivity_plus: ^6.1.5
+  pie_chart: ^5.4.0
+  fl_chart: ^1.0.0
 
 dev_dependencies:
   flutter_test:
