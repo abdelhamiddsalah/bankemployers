@@ -1,4 +1,3 @@
-import 'package:bankemployers/features/auth/employer_sinup_view.dart';
 import 'package:bankemployers/core/styling/colors.dart';
 import 'package:bankemployers/features/splash/user_role.dart';
 import 'package:flutter/material.dart';

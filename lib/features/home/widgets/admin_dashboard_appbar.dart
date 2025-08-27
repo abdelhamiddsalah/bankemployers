@@ -43,7 +43,7 @@ class AdminDashboardAppBar extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Employees Management',
+                              'Admin Management',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 24,
@@ -52,7 +52,7 @@ class AdminDashboardAppBar extends StatelessWidget {
                             ),
                             SizedBox(height: 4),
                             Text(
-                              '${5} of ${8} employees',
+                              '1 Admin',
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.9),
                                 fontSize: 14,
