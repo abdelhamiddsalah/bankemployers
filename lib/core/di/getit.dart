@@ -3,6 +3,8 @@ import 'package:bankemployers/core/connections/network_info.dart';
 import 'package:bankemployers/core/databases/api/dio_consumer.dart';
 import 'package:bankemployers/core/databases/api/interceptors.dart';
 import 'package:bankemployers/core/databases/cache/cache_helper.dart';
+import 'package:bankemployers/features/auth/data/repo/singnup_emplyee.dart';
+import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
 import 'package:bankemployers/features/empleyees/data/repo/employes_repo.dart';
 import 'package:bankemployers/features/empleyees/view/viewmodel/upload_cubit/upload_cubit.dart';
 import 'package:dio/dio.dart';
@@ -27,8 +29,12 @@ Future<void> setup() async {
   });
 
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton<UploadCubit>(() => UploadCubit( sl())); //
   sl.registerLazySingleton<EmployesRepo>(() => EmployesRepo(dioConsumer: DioConsumer(dio: Dio())));
   UploadCubit;
-sl.registerLazySingleton<UploadCubit>(() => UploadCubit( sl())); //
+
+    sl.registerLazySingleton<EmployerCubit>(() => EmployerCubit( sl())); //
+  UploadCubit;
+sl.registerLazySingleton<SingnupEmplyee>(() => SingnupEmplyee( DioConsumer(dio: Dio()))); //
   
 }

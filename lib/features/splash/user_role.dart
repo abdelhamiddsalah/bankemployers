@@ -1,5 +1,5 @@
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/auth/employer_sinup_view.dart';
+import 'package:bankemployers/features/auth/view/employer_sinup_view.dart';
 import 'package:flutter/material.dart';
 
 class UserRoleSelectionScreen extends StatefulWidget {

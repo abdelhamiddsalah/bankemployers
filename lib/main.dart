@@ -1,6 +1,7 @@
 import 'package:bankemployers/core/di/getit.dart';
 import 'package:bankemployers/features/admin/view/admin_view.dart';
 import 'package:bankemployers/features/empleyees/view/cv_upload_page.dart';
+import 'package:bankemployers/features/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main()async {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: CVUploadPage(),
+      home: SplashScreen(),
 
     );
   }

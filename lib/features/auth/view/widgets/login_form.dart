@@ -1,8 +1,8 @@
 import 'package:bankemployers/core/styling/colors.dart';
 import 'package:bankemployers/core/widgets/custom_textfield.dart';
-import 'package:bankemployers/features/auth/cubit/cubit/employer_cubit.dart';
-import 'package:bankemployers/features/auth/widgets/forget_pincode_in_signin.dart';
-import 'package:bankemployers/features/auth/widgets/support_in_signin.dart';
+import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
+import 'package:bankemployers/features/auth/view/widgets/forget_pincode_in_signin.dart';
+import 'package:bankemployers/features/auth/view/widgets/support_in_signin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -167,7 +167,7 @@ class LoginForm extends StatelessWidget {
                       return ElevatedButton(
                         onPressed: isLoading ? null : () async {
                           if (formKey.currentState!.validate()) {
-                            context.read<EmployerCubit>().login();
+                          
                           }
                         },
                         style: ElevatedButton.styleFrom(

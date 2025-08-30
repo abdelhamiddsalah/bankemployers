@@ -1,5 +1,6 @@
-import 'package:bankemployers/features/auth/cubit/cubit/employer_cubit.dart';
-import 'package:bankemployers/features/auth/widgets/employer_sinup_view_body.dart';
+import 'package:bankemployers/core/di/getit.dart';
+import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
+import 'package:bankemployers/features/auth/view/widgets/employer_sinup_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +11,7 @@ class EmployerSinupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => EmployerCubit(),
+        create: (context) => sl<EmployerCubit>(),
         child: EmployeeSignupScreen(),
       ),
     );

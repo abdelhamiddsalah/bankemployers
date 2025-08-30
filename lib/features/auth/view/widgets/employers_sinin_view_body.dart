@@ -1,7 +1,7 @@
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/auth/widgets/left_side_in_signin.dart';
-import 'package:bankemployers/features/auth/widgets/login_form.dart';
-import 'package:bankemployers/features/auth/cubit/cubit/employer_cubit.dart';
+import 'package:bankemployers/features/auth/view/widgets/left_side_in_signin.dart';
+import 'package:bankemployers/features/auth/view/widgets/login_form.dart';
+import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,27 +22,6 @@ class _EmployersSininViewBodyState extends State<EmployersSininViewBody>
   late Animation<Offset> _slideAnimation;
 
   // Sample employee data for authentication
-  final Map<String, dynamic> sampleEmployee = {
-    "firstName": "Ahmed",
-    "lastName": "Salah",
-    "email": "ahmed.salah@example.com",
-    "password": "StrongPassword123",
-    "phoneNumber": "01012345678",
-    "nationalID": "30101010101234",
-    "address": {
-      "city": "Cairo",
-      "zipCode": "12345"
-    },
-    "dateOfBirth": "1990-05-20",
-    "employeeID": "EMP123",
-    "jobTitle": "Software Engineer",
-    "department": "IT",
-    "dateOfHiring": "2023-01-01",
-    "workBranch": "Cairo Branch",
-    "maritalStatus": "Single",
-    "gender": "MALE",
-    "role": "EMPLOYEE"
-  };
 
   @override
   void initState() {
