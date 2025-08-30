@@ -1,5 +1,5 @@
-import 'package:bankemployers/features/home/widgets/employee_list_card.dart';
-import 'package:bankemployers/features/home/widgets/search_and_sort.dart';
+import 'package:bankemployers/features/home/view/widgets/employee_list_card.dart';
+import 'package:bankemployers/features/home/view/widgets/search_and_sort.dart';
 import 'package:flutter/material.dart';
 
 class ListViewEmployeeCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class ListViewEmployeeCard extends StatelessWidget {
           itemCount: 5,
           separatorBuilder: (context, index) => SizedBox(height: 12),
           itemBuilder: (context, index) {
-            return EmployeeListCard();
+            return EmployeeListCard(index: index);
           },
         ),
       ],

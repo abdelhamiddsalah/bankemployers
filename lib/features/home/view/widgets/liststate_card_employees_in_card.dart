@@ -1,6 +1,11 @@
-import 'package:bankemployers/features/home/widgets/employees_pagge.dart';
-import 'package:bankemployers/features/home/widgets/state_card_emplyee_in_admin.dart';
+import 'package:bankemployers/core/databases/api/dio_consumer.dart';
+import 'package:bankemployers/features/home/data/repos/employers_repo.dart';
+import 'package:bankemployers/features/home/view/viewmodel/cubits/employer_cubit/cubit/employers_cubit.dart';
+import 'package:bankemployers/features/home/view/widgets/employees_pagge.dart';
+import 'package:bankemployers/features/home/view/widgets/state_card_emplyee_in_admin.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'users_page.dart';
 import 'cvs_page.dart';
 
@@ -38,7 +43,14 @@ class ListStateCardEmployeesInCard extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => EmployeesPage()),
+                  MaterialPageRoute(
+                    builder: (_) => BlocProvider(
+                      create: (context) => EmployersCubit(
+                        employersRepo: EmployersRepo(dioConsumer: DioConsumer(dio: Dio())),
+                      )..getAllEmployers(),
+                      child: EmployeesPage(),
+                    ),
+                  ),
                 );
               },
             ),
@@ -56,7 +68,6 @@ class ListStateCardEmployeesInCard extends StatelessWidget {
                 );
               },
             ),
-            // باقي الـ Cards بدون Navigation أو تضيفهم لاحقاً
           ],
         ),
       ),

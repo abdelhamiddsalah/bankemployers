@@ -1,6 +1,6 @@
-import 'package:bankemployers/features/home/widgets/admin_dashboard_appbar.dart';
-import 'package:bankemployers/features/home/widgets/liststate_card_employees_in_card.dart';
-import 'package:bankemployers/features/home/widgets/section_employee.dart';
+import 'package:bankemployers/features/home/view/widgets/admin_dashboard_appbar.dart';
+import 'package:bankemployers/features/home/view/widgets/liststate_card_employees_in_card.dart';
+import 'package:bankemployers/features/home/view/widgets/section_employee.dart';
 import 'package:flutter/material.dart';
 
 
