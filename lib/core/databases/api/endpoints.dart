@@ -10,6 +10,8 @@ class Endpoints {
   }
 
   static const String signupAdmin = "registerAdmin";
+
+  static const String uploadCv = "upload-cv";
   static const String allEmployers = "admin/allEmployers";
   static String deleteEmployer(String id) => "admin/employer/$id";
 }
