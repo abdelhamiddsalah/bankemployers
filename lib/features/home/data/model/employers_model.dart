@@ -1,46 +1,46 @@
 class EmployersModel {
   final int id;
-  final String firstName;
-  final String lastName;
-  final String email;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
   final String password;
-  final String phoneNumber;
-  final String nationalID;
-  final Address address;
-  final DateTime dateOfBirth;
-  final String emplyeeID;
-  final DateTime dateOfHiring;
+  final String? phoneNumber;
+  final String? nationalID;
+  final Address? address;
+  final DateTime? dateOfBirth;
+  final String? emplyeeID;
+  final DateTime? dateOfHiring;
   final String role;
   final List<dynamic> pdfFile;
-  final List<dynamic> users;
+  final List<dynamic>? users; // Made nullable since it's not in your JSON
   final String pincode;
-  final String jobTitle;
-  final String department;
-  final String materialStatus;
-  final String workBranch;
-  final String gender;
+  final String? jobTitle;
+  final String? department;
+  final String? materialStatus;
+  final String? workBranch;
+  final String? gender;
 
   EmployersModel({
     required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.email,
+    this.firstName,
+    this.lastName,
+    this.email,
     required this.password,
-    required this.phoneNumber,
-    required this.nationalID,
-    required this.address,
-    required this.dateOfBirth,
-    required this.emplyeeID,
-    required this.dateOfHiring,
+    this.phoneNumber,
+    this.nationalID,
+    this.address,
+    this.dateOfBirth,
+    this.emplyeeID,
+    this.dateOfHiring,
     required this.role,
     required this.pdfFile,
-    required this.users,
+    this.users,
     required this.pincode,
-    required this.jobTitle,
-    required this.department,
-    required this.materialStatus,
-    required this.workBranch,
-    required this.gender,
+    this.jobTitle,
+    this.department,
+    this.materialStatus,
+    this.workBranch,
+    this.gender,
   });
 
   factory EmployersModel.fromJson(Map<String, dynamic> json) {
@@ -52,13 +52,21 @@ class EmployersModel {
       password: json['password'],
       phoneNumber: json['phoneNumber'],
       nationalID: json['nationalID'],
-      address: Address.fromJson(json['address']),
-      dateOfBirth: DateTime.parse(json['dateOfBirth']),
+      address: json['address'] != null ? Address.fromJson(json['address']) : null,
+      dateOfBirth: json['dateOfBirth'] != null 
+          ? DateTime.parse(json['dateOfBirth']) 
+          : null,
       emplyeeID: json['emplyeeID'],
-      dateOfHiring: DateTime.parse(json['dateOfhiring']),
+      dateOfHiring: json['dateOfhiring'] != null 
+          ? DateTime.parse(json['dateOfhiring']) 
+          : null,
       role: json['role'],
-      pdfFile: List<dynamic>.from(json['pdfFile']),
-      users: List<dynamic>.from(json['users']),
+      pdfFile: json['pdfFile'] != null 
+          ? List<dynamic>.from(json['pdfFile']) 
+          : [],
+      users: json['users'] != null 
+          ? List<dynamic>.from(json['users']) 
+          : null,
       pincode: json['pincode'],
       jobTitle: json['jobTitle'],
       department: json['department'],
@@ -77,10 +85,10 @@ class EmployersModel {
       'password': password,
       'phoneNumber': phoneNumber,
       'nationalID': nationalID,
-      'address': address.toJson(),
-      'dateOfBirth': dateOfBirth.toIso8601String(),
+      'address': address?.toJson(),
+      'dateOfBirth': dateOfBirth?.toIso8601String(),
       'emplyeeID': emplyeeID,
-      'dateOfhiring': dateOfHiring.toIso8601String(),
+      'dateOfhiring': dateOfHiring?.toIso8601String(),
       'role': role,
       'pdfFile': pdfFile,
       'users': users,

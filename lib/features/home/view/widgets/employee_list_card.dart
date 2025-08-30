@@ -55,18 +55,19 @@ class EmployeeListCard extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       child: Center(
-                        child: Text(
-                          employee.firstName.isNotEmpty && employee.lastName.isNotEmpty
-                              ? employee.firstName[0].toUpperCase() + employee.lastName[0].toUpperCase()
-                              : employee.firstName.isNotEmpty 
-                                  ? employee.firstName[0].toUpperCase()
-                                  : '?',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                  child: Text(
+  ( (employee.firstName?.isNotEmpty ?? false) && (employee.lastName?.isNotEmpty ?? false) )
+      ? '${employee.firstName![0].toUpperCase()}${employee.lastName![0].toUpperCase()}'
+      : (employee.firstName?.isNotEmpty ?? false)
+          ? employee.firstName![0].toUpperCase()
+          : '?',
+  style: TextStyle(
+    color: Colors.white,
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+  ),
+),
+
                       ),
                     ),
                     SizedBox(width: 16),
@@ -85,7 +86,7 @@ class EmployeeListCard extends StatelessWidget {
                           ),
                           SizedBox(height: 4),
                           Text(
-                            employee.jobTitle,
+                            employee.jobTitle ?? 'No Job Title',
                             style: TextStyle(
                               fontSize: 14,
                               color: maincolor,
@@ -94,7 +95,7 @@ class EmployeeListCard extends StatelessWidget {
                           ),
                           SizedBox(height: 2),
                           Text(
-                            employee.department,
+                            employee.department ?? 'No Department',
                             style: TextStyle(
                               fontSize: 13,
                               color: Colors.grey[600],
@@ -108,7 +109,7 @@ class EmployeeListCard extends StatelessWidget {
                               SizedBox(width: 4),
                               Expanded(
                                 child: Text(
-                                  employee.email,
+                                  employee.email ?? 'No Email',
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.grey[600],
