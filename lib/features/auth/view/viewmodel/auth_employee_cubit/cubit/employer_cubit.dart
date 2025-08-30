@@ -1,3 +1,7 @@
+import 'package:bankemployers/features/auth/data/model/auth_response.dart';
+import 'package:bankemployers/features/auth/data/model/empolyee_model.dart';
+import 'package:bankemployers/features/auth/data/repo/singnup_emplyee.dart';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -6,7 +10,8 @@ part 'employer_state.dart';
 
 class EmployerCubit extends Cubit<EmployerState> {
 
-  EmployerCubit() : super(EmployerInitial());
+  EmployerCubit(this.employesRepo) : super(EmployerInitial());
+  final SingnupEmplyee employesRepo ;
     final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
@@ -19,10 +24,14 @@ class EmployerCubit extends Cubit<EmployerState> {
   final zipCodeController = TextEditingController();
   final dateOfBirthController = TextEditingController();
   final dateOfHiringController = TextEditingController();
-  
+    final formKey = GlobalKey<FormState>();
+     final personalInfoFormKey = GlobalKey<FormState>();
+   final personalInfoFsormKey = GlobalKey<FormState>();
+   // employerInfoFormKey = GlobalKey<FormState>();
   // Dropdown values
   String? selectedJobTitle;
-  String? selectedDepartment;
+  String? selectedMaterail;
+  String? selectedDapertment;
   String? selectedBranch;
   String? selectedMaritalStatus;
   String? selectedGender;
@@ -52,27 +61,7 @@ class EmployerCubit extends Cubit<EmployerState> {
     "role": "EMPLOYEE"
   };
 
-  Future<void> login() async {
-    emit(EmployerLoading());
-
-    try {
-      // Simulate network delay
-      await Future.delayed(Duration(seconds: 2));
-
-      final email = emailController.text.trim();
-      final password = passwordController.text.trim();
-
-      // Check credentials against sample data
-      if (email == sampleEmployee['email'] && password == sampleEmployee['password']) {
-        emit(EmployerSuccess(sampleEmployee));
-      } else {
-        emit(EmployerError('Invalid email or password'));
-      }
-    } catch (e) {
-      emit(EmployerError('Login failed: ${e.toString()}'));
-    }
-  }
-
+  
   @override
   Future<void> close() {
     emailController.dispose();
@@ -95,5 +84,21 @@ class EmployerCubit extends Cubit<EmployerState> {
     zipCodeController.dispose();
     dateOfBirthController.dispose();
     dateOfHiringController.dispose();
+  }
+
+  Future<void> signupEmployer(Employee employer) async {
+    emit(EmployerLoading());
+
+    try {
+      await employesRepo.signupEmployee(employer).then((response) {
+        response.fold(
+          (failure) => emit(EmployerError(failure.errMessage)),
+          (message) => emit(EmployerSuccess(message)),
+        );
+      });
+    } catch (e) {
+      emit(EmployerError(e.toString()));
+    }
+    emit(EmployerInitial());
   }
 }

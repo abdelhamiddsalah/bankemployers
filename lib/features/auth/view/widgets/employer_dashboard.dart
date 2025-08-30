@@ -1,6 +1,6 @@
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/auth/widgets/employers_sinin_view_body.dart';
-import 'package:bankemployers/features/auth/widgets/info_card_in_signin.dart';
+import 'package:bankemployers/features/auth/view/widgets/employers_sinin_view_body.dart';
+import 'package:bankemployers/features/auth/view/widgets/info_card_in_signin.dart';
 import 'package:flutter/material.dart';
 
 class EmployeeDashboard extends StatelessWidget {

@@ -1,6 +1,6 @@
 // widgets/personal_info_step_widget.dart
-import 'package:bankemployers/features/auth/cubit/cubit/employer_cubit.dart';
-import 'package:bankemployers/features/auth/widgets/data_selector_field.dart';
+import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
+import 'package:bankemployers/features/auth/view/widgets/data_selector_field.dart';
 import 'package:bankemployers/core/widgets/custom_dropdown.dart';
 import 'package:bankemployers/core/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -14,39 +14,46 @@ class PersonalInfoStepWidget extends StatefulWidget {
 
 class _PersonalInfoStepWidgetState extends State<PersonalInfoStepWidget> {
   final List<String> _genders = ['MALE', 'FEMALE'];
-
-  @override
+  final List<String> matematerialStatus = [
+    'Single', 'Married', 'Divorced', 'Widowed'
+  ];  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Personal Information',
-            style: TextStyle(
-              fontSize: 20, 
-              fontWeight: FontWeight.bold, 
-              color: Colors.grey[800]
+      child: Form(
+        key: context.read<EmployerCubit>().personalInfoFormKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Personal Information',
+              style: TextStyle(
+                fontSize: 20, 
+                fontWeight: FontWeight.bold, 
+                color: Colors.grey[800]
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          
-          // Name Fields Row
-          _buildNameFields(),
-          SizedBox(height: 20),
-          
-          // Email Field
-          _buildEmailField(),
-          SizedBox(height: 20),
-          
-          // Password Fields
-          _buildPasswordFields(),
-          SizedBox(height: 20),
-          
-          // Date and Gender Row
-          _buildDateAndGenderRow(),
-        ],
+            SizedBox(height: 20),
+            
+            // Name Fields Row
+            _buildNameFields(),
+            SizedBox(height: 20),
+            
+            // Email Field
+            _buildEmailField(),
+            SizedBox(height: 20),
+            
+            // Password Fields
+            _buildPasswordFields(),
+            SizedBox(height: 20),
+            
+            // Date and Gender Row
+            _buildDateAndGenderRow(),
+            SizedBox(height: 20),
+        
+            _buildMatematerialStatusField()
+          ],
+        ),
       ),
     );
   }
@@ -168,6 +175,23 @@ class _PersonalInfoStepWidgetState extends State<PersonalInfoStepWidget> {
       ],
     );
   }
+
+    Widget _buildMatematerialStatusField() {
+    return _buildFieldWithLabel(
+      label: 'mathematical Status',
+      child: CustomDropdown(
+        hintText: 'Select mathematical status',
+        iconData: Icons.business_outlined,
+        value: context.read<EmployerCubit>().selectedMaterail,
+        items: matematerialStatus,
+        onChanged: (value) => setState(() => 
+          context.read<EmployerCubit>().selectedMaterail = value
+        ),
+        validator: (value) => value == null ? 'Required' : null,
+      ),
+    );
+  }
+
 
   Widget _buildFieldWithLabel({
     required String label,

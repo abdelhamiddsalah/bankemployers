@@ -1,4 +1,4 @@
-import 'package:bankemployers/features/auth/widgets/progress_indecator_in_employersignup.dart';
+import 'package:bankemployers/features/auth/view/widgets/progress_indecator_in_employersignup.dart';
 import 'package:flutter/material.dart';
 
 class LeftSideInEmployerSignup extends StatelessWidget {

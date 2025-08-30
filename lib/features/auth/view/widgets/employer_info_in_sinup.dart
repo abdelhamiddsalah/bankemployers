@@ -1,8 +1,9 @@
 // widgets/employment_info_step_widget.dart
-import 'package:bankemployers/features/auth/cubit/cubit/employer_cubit.dart';
-import 'package:bankemployers/features/auth/widgets/data_selector_field.dart';
+
 import 'package:bankemployers/core/widgets/custom_dropdown.dart';
 import 'package:bankemployers/core/widgets/custom_textfield.dart';
+import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
+import 'package:bankemployers/features/auth/view/widgets/data_selector_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -117,10 +118,10 @@ class _EmploymentInfoStepWidgetState extends State<EmploymentInfoStepWidget> {
       child: CustomDropdown(
         hintText: 'Select department',
         iconData: Icons.business_outlined,
-        value: context.read<EmployerCubit>().selectedDepartment,
+        value: context.read<EmployerCubit>().selectedDapertment,
         items: _departments,
         onChanged: (value) => setState(() => 
-          context.read<EmployerCubit>().selectedDepartment = value
+          context.read<EmployerCubit>().selectedDapertment = value
         ),
         validator: (value) => value == null ? 'Required' : null,
       ),

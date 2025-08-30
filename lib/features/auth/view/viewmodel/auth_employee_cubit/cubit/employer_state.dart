@@ -8,13 +8,13 @@ final class EmployerInitial extends EmployerState {}
 class EmployerLoading extends EmployerState {}
 
 class EmployerSuccess extends EmployerState {
-  final Map<String, dynamic> employee;
-  
-  EmployerSuccess(this.employee);
+  final AuthResponse authResponse;
+
+  EmployerSuccess(this.authResponse);
 }
 
 class EmployerError extends EmployerState {
   final String message;
-  
+
   EmployerError(this.message);
 }
