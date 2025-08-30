@@ -6,7 +6,9 @@ import 'package:meta/meta.dart';
 part 'alluser_state.dart';
 
 class AlluserCubit extends Cubit<AlluserState> {
-  AlluserCubit(this.employersRepo) : super(AlluserInitial());
+  AlluserCubit(this.employersRepo) : super(AlluserInitial()){
+    getAllEmployers();
+  }
  final EmployesRepo employersRepo;
 
   Future<void> getAllEmployers() async {

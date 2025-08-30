@@ -29,16 +29,24 @@ class EmployesRepo {
   Future<Either<Failure, List<UserInEmployee>>> getAllUserrInEmployers() async {
     try {
       final response = await dioConsumer.get(path: Endpoints.allUsers);
-      if (response is List) {
-        final users = (response as List)
-            .map(
-              (json) => UserInEmployee.fromJson(json as Map<String, dynamic>),
-            )
-            .toList();
-        return right(users);
-      } else {
-        return left(Failure(errMessage: 'Unexpected response type'));
-      }
+      return response.fold(
+        (l) {
+          return left(Failure(errMessage: l));
+        },
+        (r) {
+          if (r.data is List) {
+            final users = (r.data as List)
+                .map(
+                  (json) =>
+                      UserInEmployee.fromJson(json as Map<String, dynamic>),
+                )
+                .toList();
+            return right(users);
+          } else {
+            return left(Failure(errMessage: 'Unexpected response tyype'));
+          }
+        },
+      );
     } on Exception catch (e) {
       return left(Failure(errMessage: e.toString()));
     }
