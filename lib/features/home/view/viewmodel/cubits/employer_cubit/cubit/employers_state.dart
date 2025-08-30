@@ -18,3 +18,9 @@ final class EmployersError extends EmployersState {
 
   EmployersError({required this.message});
 }
+
+class EmployersSingleLoaded extends EmployersState {
+  final EmployersModel employer;
+  
+  EmployersSingleLoaded({required this.employer});  
+  }

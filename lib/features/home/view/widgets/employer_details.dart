@@ -3,7 +3,10 @@ import 'package:bankemployers/features/home/data/model/employers_model.dart';
 import 'package:flutter/material.dart';
 
 class EmployerDetailsPage extends StatelessWidget {
-  const EmployerDetailsPage({super.key, required this.employer}); // ✅ Added const
+  const EmployerDetailsPage({
+    super.key,
+    required this.employer,
+  }); // ✅ Added const
   final EmployersModel employer;
 
   @override
@@ -24,7 +27,9 @@ class EmployerDetailsPage extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -35,7 +40,7 @@ class EmployerDetailsPage extends StatelessWidget {
             // Header Section with Profile
             _buildProfileHeader(),
             const SizedBox(height: 32),
-            
+    
             // Details Sections
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +56,7 @@ class EmployerDetailsPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 24),
-                
+    
                 // Right Column
                 Expanded(
                   child: Column(
@@ -105,14 +110,10 @@ class EmployerDetailsPage extends StatelessWidget {
                 ),
               ],
             ),
-            child: Icon(
-              Icons.person,
-              size: 60,
-              color: maincolor,
-            ),
+            child: Icon(Icons.person, size: 60, color: maincolor),
           ),
           const SizedBox(width: 32),
-          
+
           // Profile Info
           Expanded(
             child: Column(
@@ -145,7 +146,10 @@ class EmployerDetailsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(20),
@@ -167,58 +171,45 @@ class EmployerDetailsPage extends StatelessWidget {
   }
 
   Widget _buildPersonalInfoCard() {
-    return _buildInfoCard(
-      'Personal Information',
-      Icons.person_outline,
-      [
-        _buildInfoRow('First Name', employer.firstName ?? 'N/A'),
-        _buildInfoRow('Last Name', employer.lastName ?? 'N/A'),
-        _buildInfoRow('National ID', employer.nationalID ?? 'N/A'),
-        _buildInfoRow('Date of Birth', _formatDate(employer.dateOfBirth)),
-        _buildInfoRow('Gender', _formatGender(employer.gender)),
-        _buildInfoRow('Marital Status', _translateMaterialStatus(employer.materialStatus)),
-      ],
-    );
+    return _buildInfoCard('Personal Information', Icons.person_outline, [
+      _buildInfoRow('First Name', employer.firstName ?? 'N/A'),
+      _buildInfoRow('Last Name', employer.lastName ?? 'N/A'),
+      _buildInfoRow('National ID', employer.nationalID ?? 'N/A'),
+      _buildInfoRow('Date of Birth', _formatDate(employer.dateOfBirth)),
+      _buildInfoRow('Gender', _formatGender(employer.gender)),
+      _buildInfoRow(
+        'Marital Status',
+        _translateMaterialStatus(employer.materialStatus),
+      ),
+    ]);
   }
 
   Widget _buildContactInfoCard() {
-    return _buildInfoCard(
-      'Contact Information',
-      Icons.contact_phone_outlined,
-      [
-        _buildInfoRow('Email', employer.email ?? 'N/A'),
-        _buildInfoRow('Phone Number', employer.phoneNumber ?? 'N/A'),
-        _buildInfoRow('City', employer.address?.city ?? 'N/A'),
-        _buildInfoRow('Zip Code', employer.address?.zipCode ?? 'N/A'),
-      ],
-    );
+    return _buildInfoCard('Contact Information', Icons.contact_phone_outlined, [
+      _buildInfoRow('Email', employer.email ?? 'N/A'),
+      _buildInfoRow('Phone Number', employer.phoneNumber ?? 'N/A'),
+      _buildInfoRow('City', employer.address?.city ?? 'N/A'),
+      _buildInfoRow('Zip Code', employer.address?.zipCode ?? 'N/A'),
+    ]);
   }
 
   Widget _buildJobInfoCard() {
-    return _buildInfoCard(
-      'Job Information',
-      Icons.work_outline,
-      [
-        _buildInfoRow('Job Title', employer.jobTitle ?? 'N/A'),
-        _buildInfoRow('Department', employer.department ?? 'N/A'),
-        _buildInfoRow('Work Branch', employer.workBranch ?? 'N/A'),
-        _buildInfoRow('Hiring Date', _formatDate(employer.dateOfHiring)),
-        _buildInfoRow('Role', employer.role),
-      ],
-    );
+    return _buildInfoCard('Job Information', Icons.work_outline, [
+      _buildInfoRow('Job Title', employer.jobTitle ?? 'N/A'),
+      _buildInfoRow('Department', employer.department ?? 'N/A'),
+      _buildInfoRow('Work Branch', employer.workBranch ?? 'N/A'),
+      _buildInfoRow('Hiring Date', _formatDate(employer.dateOfHiring)),
+      _buildInfoRow('Role', employer.role),
+    ]);
   }
 
   Widget _buildSecurityInfoCard() {
-    return _buildInfoCard(
-      'Security Information',
-      Icons.security_outlined,
-      [
-        _buildInfoRow('Employee ID', employer.id.toString()),
-        _buildInfoRow('Employee Code', employer.emplyeeID ?? 'N/A'),
-        _buildInfoRow('Password', '••••••••••••'),
-        _buildInfoRow('Pin Code', '••••••••••••'),
-      ],
-    );
+    return _buildInfoCard('Security Information', Icons.security_outlined, [
+      _buildInfoRow('Employee ID', employer.id.toString()),
+      _buildInfoRow('Employee Code', employer.emplyeeID ?? 'N/A'),
+      _buildInfoRow('Password', '••••••••••••'),
+      _buildInfoRow('Pin Code', '••••••••••••'),
+    ]);
   }
 
   Widget _buildInfoCard(String title, IconData icon, List<Widget> children) {
@@ -263,13 +254,11 @@ class EmployerDetailsPage extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Card Content
           Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
-              children: children,
-            ),
+            child: Column(children: children),
           ),
         ],
       ),

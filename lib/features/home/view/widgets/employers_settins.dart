@@ -13,19 +13,20 @@ class EmployersSettins extends StatelessWidget {
     return PopupMenuButton<String>(
       icon: Icon(Icons.more_vert, color: Colors.grey[400]),
       onSelected: (value) async {
+        final navigator = Navigator.of(context);
+        final cubit = context.read<EmployersCubit>();
+
         switch (value) {
           case 'delete':
-            context.read<EmployersCubit>().deleteEmployer(employerId);
+            cubit.deleteEmployer(employerId);
             break;
 
           case 'view':
-            final cubit = context.read<EmployersCubit>();
             await cubit.getEmployerById(employerId);
 
             if (cubit.state is EmployersLoaded) {
               final employer = (cubit.state as EmployersLoaded).employers.first;
-              Navigator.push(
-                context,
+              navigator.push(
                 MaterialPageRoute(
                   builder: (context) => EmployerDetailsPage(employer: employer),
                 ),
@@ -72,10 +73,7 @@ class EmployersSettins extends StatelessWidget {
             children: [
               Icon(Icons.delete, color: Colors.red, size: 20),
               SizedBox(width: 8),
-              Text(
-                'Delete',
-                style: TextStyle(color: Colors.red),
-              ),
+              Text('Delete', style: TextStyle(color: Colors.red)),
             ],
           ),
         ),
