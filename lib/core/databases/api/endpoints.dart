@@ -16,4 +16,6 @@ class Endpoints {
   static String deleteEmployer(String id) => "admin/employer/$id";
   static String searchEmployers(String query) => "admin/searchEmployers/query=$query";
   static String getEmployerById(String id) => "admin/getEmployer/$id";
+  static const String allUsers = "admin/allUsers";
+  static String deleteUser(String id) => "admin/user/$id";
 }
