@@ -1,4 +1,4 @@
-import 'package:bankemployers/features/empleyees/view/widgets/file_upload_area.dart';
+import 'package:bankemployers/features/cvs/view/widgets/file_upload_area.dart';
 import 'package:bankemployers/features/empleyees/view/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 

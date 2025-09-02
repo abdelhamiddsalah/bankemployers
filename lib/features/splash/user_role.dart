@@ -1,5 +1,6 @@
 import 'package:bankemployers/core/styling/colors.dart';
 import 'package:bankemployers/features/auth/view/employer_sinup_view.dart';
+import 'package:bankemployers/features/cvs/view/cv_upload_page.dart';
 import 'package:flutter/material.dart';
 
 class UserRoleSelectionScreen extends StatefulWidget {
@@ -78,7 +79,7 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
   void _navigateToEmployerLogin() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => EmployerSinupView()),
+      MaterialPageRoute(builder: (context) =>CVUploadPage()),
     );
   }
 

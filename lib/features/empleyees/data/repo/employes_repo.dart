@@ -1,8 +1,8 @@
 import 'package:bankemployers/core/databases/api/dio_consumer.dart';
 import 'package:bankemployers/core/databases/api/endpoints.dart';
 import 'package:bankemployers/core/errors/failure.dart';
-import 'package:bankemployers/features/empleyees/data/models/cv_id_model.dart';
-import 'package:bankemployers/features/empleyees/data/models/cv_model.dart';
+import 'package:bankemployers/features/cvs/data/models/cv_id_model.dart';
+import 'package:bankemployers/features/cvs/data/models/cv_model.dart';
 import 'package:bankemployers/features/empleyees/data/models/user_in_employee.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';

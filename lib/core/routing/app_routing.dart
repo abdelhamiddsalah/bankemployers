@@ -1,5 +1,5 @@
 import 'package:bankemployers/core/routing/routes.dart';
-import 'package:bankemployers/features/empleyees/view/cv_upload_page.dart';
+import 'package:bankemployers/features/cvs/view/cv_upload_page.dart';
 import 'package:bankemployers/features/empleyees/view/empl_dadhboard.dart';
 import 'package:bankemployers/features/splash/splash_view.dart';
 import 'package:go_router/go_router.dart';

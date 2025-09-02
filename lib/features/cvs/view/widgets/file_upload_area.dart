@@ -1,5 +1,5 @@
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/empleyees/view/viewmodel/upload_cubit/upload_cubit.dart';
+import 'package:bankemployers/features/cvs/view/viewmodel/cubits/upload_cubit/upload_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +16,7 @@ class FileUploadArea extends StatelessWidget {
           );
         } else if (state is FilePickFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: ${state.message}')),
+            SnackBar(content: Text('Error: ${state.error}')),
           );
         }
       },

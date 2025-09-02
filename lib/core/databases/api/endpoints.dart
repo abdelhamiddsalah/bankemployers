@@ -19,5 +19,15 @@ class Endpoints {
   static String getEmployerById(String id) => "admin/getEmployer/$id";
   static const String allUsers = "admin/allUsers";
   static String deleteUser(String id) => "admin/user/$id";
-  static String getCvById(int id) => "admin/Cv/$id";
+  static String getCvById(int id) => "admin/cv/$id";
+  static const String allCvs = "admin/allCvs";
+static String updateCvStatus({
+  required int id,
+  required String result,
+  required double salary,
+  required String copoun,
+}) {
+  return "admin/cv/$id/update?result=$result&salary=$salary&copoun=$copoun";
+}
+
 }

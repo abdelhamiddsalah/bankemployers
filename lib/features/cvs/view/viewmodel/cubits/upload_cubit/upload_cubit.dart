@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bankemployers/core/databases/cache/cache_helper.dart';
+import 'package:bankemployers/features/cvs/data/models/cv_id_model.dart';
 import 'package:bankemployers/features/empleyees/data/repo/employes_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -93,5 +94,24 @@ class UploadCubit extends Cubit<UploadState> {
     }
   }
 
-  
+  Future<void> getCvDetails() async {
+  final cvId = CacheHelper.sharedPreferences.getInt('cvId');
+  if (cvId == null) {
+    emit(UploadInitial()); // مفيش CV
+    return;
+  }
+
+  try {
+    emit(UploadLoading());
+
+    final response = await employesRepo.getCVById(cvId);
+    response.fold(
+      (failure) => emit(UploadFailure(failure.errMessage)),
+      (cv) => emit(CvDetailsLoaded(cv)), // حالة جديدة
+    );
+  } catch (e) {
+    emit(UploadFailure(e.toString()));
+  }
+}
+
 }
