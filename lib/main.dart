@@ -1,7 +1,5 @@
 import 'package:bankemployers/core/di/getit.dart';
-import 'package:bankemployers/features/admin/view/admin_view.dart';
-import 'package:bankemployers/features/empleyees/view/cv_upload_page.dart';
-import 'package:bankemployers/features/empleyees/view/empl_dadhboard.dart';
+import 'package:bankemployers/features/home/view/widgets/empl_dadhboard.dart';
 import 'package:flutter/material.dart';
 
 void main()async {
