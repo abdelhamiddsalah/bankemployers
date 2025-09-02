@@ -61,7 +61,6 @@ class UserRow extends StatelessWidget {
               ],
             ),
           ),
-
           // Account Number
           Expanded(
             child: Column(
@@ -91,7 +90,7 @@ class UserRow extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  user.account ?? 'saving',
+                  user.account?.accountType ?? '',
                   style: TextStyle(
                     color: maincolor,
                     fontSize: 12,
@@ -101,13 +100,10 @@ class UserRow extends StatelessWidget {
               ),
             ),
           ),
-
-         
-
           // Balance
           Expanded(
             child: Text(
-              '${user.id.toString()} EGP',
+              '${user.account?.balance ?? '0'} EGP',
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -115,7 +111,6 @@ class UserRow extends StatelessWidget {
               ),
             ),
           ),
-
           // Actions
           SizedBox(
             width: 120,
@@ -180,11 +175,11 @@ class UserRow extends StatelessWidget {
                   _buildDetailRow('Email:', user.email),
                   _buildDetailRow('Phone:', user.phoneNumber),
                   _buildDetailRow('Address:', user.address.city),
-                  _buildDetailRow('Account Number:', user.account ?? 'saving'),
-                  _buildDetailRow('Account Type:', user.account ?? 'saving'),
+                  _buildDetailRow('Account Number:', user.account?.accountNumber ?? ''),
+                  _buildDetailRow('Account Type:', user.account?.accountType ?? ''),
                   _buildDetailRow(
                     'Balance:',
-                    '${user.id.toString().substring(2)} EGP',
+                    '${user.account?.balance ?? '0'} EGP',
                   ),
                 ],
               ),

@@ -9,11 +9,11 @@ class UserInEmployee {
   final String nationalId;
   final DateTime dateOfBirth;
   final String pinCode;
-  final AddressUserInEmployee address;
+  final Address address;
   final String gender;
   final String maritalStatus;
-  final dynamic account; // ممكن تبقى null أو Object
-  final List<dynamic> deposits; // لحد ما نعرف هي عبارة عن إيه
+  final AccountInEmployee? account;
+  final List<DepositInEmployee> deposits;
 
   UserInEmployee({
     required this.id,
@@ -35,65 +35,140 @@ class UserInEmployee {
 
   factory UserInEmployee.fromJson(Map<String, dynamic> json) {
     return UserInEmployee(
-      id: json['id'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      email: json['email'],
-      role: json['role'],
-      password: json['password'],
-      phoneNumber: json['phoneNumber'],
-      nationalId: json['nationalId'],
-      dateOfBirth: DateTime.parse(json['dateOfBirth']),
-      pinCode: json['pinCode'],
-      address: AddressUserInEmployee.fromJson(json['address']),
-      gender: json['gender'],
-      maritalStatus: json['maritalStatus'],
-      account: json['account'], // null حالياً
-      deposits: json['deposits'] ?? [],
+      id: json["id"],
+      firstName: json["firstName"],
+      lastName: json["lastName"],
+      email: json["email"],
+      role: json["role"],
+      password: json["password"],
+      phoneNumber: json["phoneNumber"],
+      nationalId: json["nationalId"],
+      dateOfBirth: DateTime.parse(json["dateOfBirth"]),
+      pinCode: json["pinCode"],
+      address: Address.fromJson(json["address"]),
+      gender: json["gender"],
+      maritalStatus: json["maritalStatus"],
+      account: json["account"] != null ? AccountInEmployee.fromJson(json["account"]) : null,
+      deposits: (json["deposits"] as List)
+          .map((d) => DepositInEmployee.fromJson(d))
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'role': role,
-      'password': password,
-      'phoneNumber': phoneNumber,
-      'nationalId': nationalId,
-      'dateOfBirth': dateOfBirth.toIso8601String(),
-      'pinCode': pinCode,
-      'address': address.toJson(),
-      'gender': gender,
-      'maritalStatus': maritalStatus,
-      'account': account,
-      'deposits': deposits,
+      "id": id,
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": email,
+      "role": role,
+      "password": password,
+      "phoneNumber": phoneNumber,
+      "nationalId": nationalId,
+      "dateOfBirth": dateOfBirth.toIso8601String(),
+      "pinCode": pinCode,
+      "address": address.toJson(),
+      "gender": gender,
+      "maritalStatus": maritalStatus,
+      "account": account?.toJson(),
+      "deposits": deposits.map((d) => d.toJson()).toList(),
     };
   }
 }
 
-class AddressUserInEmployee {
+class Address {
   final String city;
   final String zipCode;
 
-  AddressUserInEmployee({
-    required this.city,
-    required this.zipCode,
-  });
+  Address({required this.city, required this.zipCode});
 
-  factory AddressUserInEmployee.fromJson(Map<String, dynamic> json) {
-    return AddressUserInEmployee(
-      city: json['city'],
-      zipCode: json['zipCode'],
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
+      city: json["city"],
+      zipCode: json["zipCode"],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'city': city,
-      'zipCode': zipCode,
+      "city": city,
+      "zipCode": zipCode,
+    };
+  }
+}
+
+class AccountInEmployee {
+  final int id;
+  final String accountType;
+  final String accountNumber;
+  final double balance;
+  final DateTime createdAt;
+
+  AccountInEmployee({
+    required this.id,
+    required this.accountType,
+    required this.accountNumber,
+    required this.balance,
+    required this.createdAt,
+  });
+
+  factory AccountInEmployee.fromJson(Map<String, dynamic> json) {
+    return AccountInEmployee(
+      id: json["id"],
+      accountType: json["accountType"],
+      accountNumber: json["accountNumber"],
+      balance: (json["balance"] as num).toDouble(),
+      createdAt: DateTime.parse(json["createdAt"]),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "accountType": accountType,
+      "accountNumber": accountNumber,
+      "balance": balance,
+      "createdAt": createdAt.toIso8601String(),
+    };
+  }
+}
+
+class DepositInEmployee {
+  final int depositId;
+  final double amount;
+  final DateTime date;
+  final String status;
+  final String message;
+  final AccountInEmployee account;
+
+  DepositInEmployee({
+    required this.depositId,
+    required this.amount,
+    required this.date,
+    required this.status,
+    required this.message,
+    required this.account,
+  });
+
+  factory DepositInEmployee.fromJson(Map<String, dynamic> json) {
+    return DepositInEmployee(
+      depositId: json["depositId"],
+      amount: (json["amount"] as num).toDouble(),
+      date: DateTime.parse(json["date"]),
+      status: json["status"],
+      message: json["message"],
+      account: AccountInEmployee .fromJson(json["account"]),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "depositId": depositId,
+      "amount": amount,
+      "date": date.toIso8601String(),
+      "status": status,
+      "message": message,
+      "account": account.toJson(),
     };
   }
 }

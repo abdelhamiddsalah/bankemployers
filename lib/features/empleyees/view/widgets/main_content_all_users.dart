@@ -63,7 +63,8 @@ class MainContentAllUsers extends StatelessWidget {
                       Expanded(
                         child: StatCard(
                           title: 'Total balence',
-                          value: state.employers.length.toString(),
+                          value:
+                              '${state.employers.fold(0.0, (sum, user) => sum + (user.account?.balance ?? 0.0)).toStringAsFixed(2)} EGP',
                           icon: Icons.attach_money,
                           color: Colors.green,
                         ),
@@ -179,9 +180,7 @@ class MainContentAllUsers extends StatelessWidget {
                               itemCount: state.employers.length,
                               itemBuilder: (context, index) {
                                 final user = state.employers[index];
-                                return UserRow(
-                                  user: user,
-                                );
+                                return UserRow(user: user);
                               },
                             ),
                           ),
@@ -201,6 +200,4 @@ class MainContentAllUsers extends StatelessWidget {
       },
     );
   }
-
-  
 }
