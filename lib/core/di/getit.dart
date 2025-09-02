@@ -6,7 +6,7 @@ import 'package:bankemployers/core/databases/cache/cache_helper.dart';
 import 'package:bankemployers/features/auth/data/repo/singnup_emplyee.dart';
 import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
 import 'package:bankemployers/features/empleyees/data/repo/employes_repo.dart';
-import 'package:bankemployers/features/empleyees/view/viewmodel/cubit/alluser_cubit.dart';
+import 'package:bankemployers/features/empleyees/view/viewmodel/all_user_cubit/alluser_cubit.dart';
 import 'package:bankemployers/features/empleyees/view/viewmodel/upload_cubit/upload_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';

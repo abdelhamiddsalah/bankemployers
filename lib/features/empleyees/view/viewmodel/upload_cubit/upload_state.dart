@@ -20,7 +20,10 @@ class FilePickFailure extends UploadState {
 
 class UploadLoading extends UploadState {}
 
-class UploadSuccess extends UploadState {}
+class UploadSuccess extends UploadState {
+  final String responseMessage;
+  UploadSuccess(this.responseMessage);
+}
 
 class UploadFailure extends UploadState {
   final String message;

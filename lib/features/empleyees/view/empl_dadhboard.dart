@@ -1,6 +1,6 @@
 import 'package:bankemployers/core/di/getit.dart';
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/empleyees/view/viewmodel/cubit/alluser_cubit.dart';
+import 'package:bankemployers/features/empleyees/view/viewmodel/all_user_cubit/alluser_cubit.dart';
 import 'package:bankemployers/features/empleyees/view/widgets/main_content_all_users.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

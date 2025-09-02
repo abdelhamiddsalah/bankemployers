@@ -18,4 +18,5 @@ class Endpoints {
   static String getEmployerById(String id) => "admin/getEmployer/$id";
   static const String allUsers = "admin/allUsers";
   static String deleteUser(String id) => "admin/user/$id";
+  static String getCvById(int id) => "admin/Cv/$id";
 }

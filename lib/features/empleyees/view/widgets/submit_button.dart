@@ -12,7 +12,7 @@ class SubmitButton extends StatelessWidget {
       listener: (context, state) {
         if (state is UploadSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('✅ File uploaded successfully')),
+             SnackBar(content: Text(state.responseMessage)),
           );
         } else if (state is UploadFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
