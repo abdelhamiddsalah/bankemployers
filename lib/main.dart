@@ -1,5 +1,5 @@
 import 'package:bankemployers/core/di/getit.dart';
-import 'package:bankemployers/features/home/view/widgets/empl_dadhboard.dart';
+import 'package:bankemployers/features/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main()async {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: UsersDashboard(),
+      home: SplashScreen(),
 
     );
   }
