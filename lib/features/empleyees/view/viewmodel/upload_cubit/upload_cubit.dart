@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:bankemployers/core/databases/cache/cache_helper.dart';
 import 'package:bankemployers/features/empleyees/data/repo/employes_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -17,7 +18,7 @@ class UploadCubit extends Cubit<UploadState> {
   File? _savedFile;
   String fileName = '';
 
-  /// اختيار الملف وحفظه على جهاز المستخدم (داخل مجلد التطبيق)
+
   Future<void> pickAndSaveFile() async {
     try {
       emit(FilePickLoading());
@@ -83,10 +84,14 @@ class UploadCubit extends Cubit<UploadState> {
 
       response.fold(
         (failure) => emit(UploadFailure(failure.errMessage)),
-        (success) => emit(UploadSuccess()),
+        (success) { 
+          CacheHelper.sharedPreferences.setInt('cvId', success.id);
+          emit(UploadSuccess(success.cv)); },
       );
     } catch (e) {
       emit(UploadFailure(e.toString()));
     }
   }
+
+  
 }

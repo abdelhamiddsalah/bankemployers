@@ -1,6 +1,8 @@
 import 'package:bankemployers/core/databases/api/dio_consumer.dart';
 import 'package:bankemployers/core/databases/api/endpoints.dart';
 import 'package:bankemployers/core/errors/failure.dart';
+import 'package:bankemployers/features/empleyees/data/models/cv_id_model.dart';
+import 'package:bankemployers/features/empleyees/data/models/cv_model.dart';
 import 'package:bankemployers/features/empleyees/data/models/user_in_employee.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -8,19 +10,17 @@ import 'package:dio/dio.dart';
 class EmployesRepo {
   final DioConsumer dioConsumer;
   EmployesRepo({required this.dioConsumer});
-  Future<Either<Failure, String>> uploadCv(FormData formData) async {
+  Future<Either<Failure, CVModel>> uploadCv(FormData formData) async {
     try {
       final response = await dioConsumer.post(
         path: Endpoints.uploadCv,
         data: formData,
         isFormData: true,
       );
-      final data = response.toString();
-      if (data.isNotEmpty) {
-        return right('Upload successful');
-      } else {
-        return left(Failure(errMessage: 'Unexpected response type'));
-      }
+      return response.fold((l) => left(Failure(errMessage: l)), (r) {
+        final cvModel = CVModel.fromJson(r.data as Map<String, dynamic>);
+        return right(cvModel);
+      });
     } on Exception catch (e) {
       return left(Failure(errMessage: e.toString()));
     }
@@ -64,4 +64,21 @@ class EmployesRepo {
       return Left(Failure(errMessage: 'Network error: $e'));
     }
   }
+
+  Future<Either<Failure, CvIdModel>> getCVById(int id) async{
+    try {
+      final response = await dioConsumer.get(path: Endpoints.getCvById(id));
+      return response.fold(
+        (l) => Left(Failure(errMessage: l)),
+        (r) {
+          final cvIdModel = CvIdModel.fromJson(r.data as Map<String, dynamic>);
+          return Right(cvIdModel);
+        },
+      );
+   
+    } catch (e) {
+      return Left(Failure(errMessage: 'Network error: $e'));
+    }
+  }
+
 }

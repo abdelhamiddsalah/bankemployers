@@ -1,5 +1,5 @@
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/empleyees/view/viewmodel/cubit/alluser_cubit.dart';
+import 'package:bankemployers/features/empleyees/view/viewmodel/all_user_cubit/alluser_cubit.dart';
 import 'package:bankemployers/features/empleyees/view/widgets/stat_card.dart';
 import 'package:bankemployers/features/empleyees/view/widgets/user_row.dart';
 import 'package:flutter/material.dart';
