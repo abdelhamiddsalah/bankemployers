@@ -6,7 +6,8 @@ class UserRoleSelectionScreen extends StatefulWidget {
   const UserRoleSelectionScreen({super.key});
 
   @override
-  State<UserRoleSelectionScreen> createState() => _UserRoleSelectionScreenState();
+  State<UserRoleSelectionScreen> createState() =>
+      _UserRoleSelectionScreenState();
 }
 
 class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
@@ -37,21 +38,14 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
       vsync: this,
     );
 
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _fadeController,
-      curve: Curves.easeInOut,
-    ));
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _fadeController, curve: Curves.easeInOut),
+    );
 
-    _slideAnimation = Tween<Offset>(
-      begin: Offset(0, 0.3),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _slideController,
-      curve: Curves.easeOutCubic,
-    ));
+    _slideAnimation = Tween<Offset>(begin: Offset(0, 0.3), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
+        );
 
     _fadeController.forward();
     _slideController.forward();
@@ -101,11 +95,7 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF4F46E5),
-              maincolor,
-              Color(0xFF7C3AED),
-            ],
+            colors: [Color(0xFF4F46E5), maincolor, Color(0xFF7C3AED)],
           ),
         ),
         child: Row(
@@ -240,10 +230,7 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
                   SizedBox(height: 16),
                   Text(
                     'Please select your role to continue',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey[600],
-                    ),
+                    style: TextStyle(fontSize: 18, color: Colors.grey[600]),
                   ),
                   SizedBox(height: 60),
 
@@ -253,36 +240,37 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
                       Expanded(
                         child: _buildRoleCard(
                           title: 'Employee/Employer',
-                          subtitle: 'Access employee portal and manage your account',
+                          subtitle:
+                              'Access employee portal and manage your account',
                           icon: Icons.business_center,
                           role: 'employer',
                           isHovering: _isHoveringEmployer,
-                          onHover: (hovering) => setState(() => _isHoveringEmployer = hovering),
+                          onHover: (hovering) =>
+                              setState(() => _isHoveringEmployer = hovering),
                         ),
                       ),
                       SizedBox(width: 30),
                       Expanded(
                         child: _buildRoleCard(
                           title: 'Administrator',
-                          subtitle: 'Full system access and administrative controls',
+                          subtitle:
+                              'Full system access and administrative controls',
                           icon: Icons.admin_panel_settings,
                           role: 'admin',
                           isHovering: _isHoveringAdmin,
-                          onHover: (hovering) => setState(() => _isHoveringAdmin = hovering),
+                          onHover: (hovering) =>
+                              setState(() => _isHoveringAdmin = hovering),
                         ),
                       ),
                     ],
                   ),
-                  
+
                   SizedBox(height: 40),
-                  
+
                   // Help Text
                   Text(
                     'Need help? Contact your system administrator',
-                    style: TextStyle(
-                      color: Colors.grey[500],
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.grey[500], fontSize: 14),
                   ),
                 ],
               ),
@@ -311,21 +299,21 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
           height: 280,
           padding: EdgeInsets.all(30),
           decoration: BoxDecoration(
-            color: _selectedRole == role 
+            color: _selectedRole == role
                 ? maincolor.withOpacity(0.1)
                 : Colors.white,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: _selectedRole == role 
-                  ? maincolor 
-                  : isHovering 
-                      ? maincolor.withOpacity(0.3)
-                      : Colors.grey[300]!,
+              color: _selectedRole == role
+                  ? maincolor
+                  : isHovering
+                  ? maincolor.withOpacity(0.3)
+                  : Colors.grey[300]!,
               width: _selectedRole == role ? 2 : 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: isHovering 
+                color: isHovering
                     ? maincolor.withOpacity(0.1)
                     : Colors.grey.withOpacity(0.1),
                 blurRadius: isHovering ? 20 : 10,
@@ -342,21 +330,21 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: _selectedRole == role 
-                      ? maincolor 
-                      : isHovering 
-                          ? maincolor.withOpacity(0.1)
-                          : Colors.grey[100],
+                  color: _selectedRole == role
+                      ? maincolor
+                      : isHovering
+                      ? maincolor.withOpacity(0.1)
+                      : Colors.grey[100],
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Icon(
                   icon,
                   size: 40,
-                  color: _selectedRole == role 
-                      ? Colors.white 
-                      : isHovering 
-                          ? maincolor
-                          : Colors.grey[600],
+                  color: _selectedRole == role
+                      ? Colors.white
+                      : isHovering
+                      ? maincolor
+                      : Colors.grey[600],
                 ),
               ),
               SizedBox(height: 20),
@@ -367,9 +355,7 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: _selectedRole == role 
-                      ? maincolor 
-                      : Colors.grey[800],
+                  color: _selectedRole == role ? maincolor : Colors.grey[800],
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -388,22 +374,26 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
               SizedBox(height: 20),
 
               // Selection Indicator
-              if (_selectedRole == role)
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: maincolor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    'Selected',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+              _selectedRole == 'employer'
+                  ? Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: maincolor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        'Selected',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    )
+                  : SizedBox(height: 26),
             ],
           ),
         ),

@@ -8,6 +8,7 @@ import 'package:bankemployers/features/auth/view/widgets/peronal_info_in_employe
 import 'package:bankemployers/features/auth/view/widgets/step_naviation_buttons.dart';
 import 'package:bankemployers/features/auth/view/widgets/top_header_in_right_side.dart';
 import 'package:bankemployers/features/auth/view/widgets/employer_info_in_sinup.dart';
+import 'package:bankemployers/features/empleyees/view/empl_dadhboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -108,9 +109,7 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
         listener: (context, state) {
           if (state is EmployerSuccess) {
               CacheHelper.sharedPreferences.setString('token', state.authResponse.token);
-             ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Signup successful!')),
-          );
+           Navigator.push(context, MaterialPageRoute(builder: (context) => UsersDashboard()));
           }else if (state is EmployerError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Error: ${state.message}')),
@@ -209,11 +208,7 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
                                   dateOfBirth: context
                                       .read<EmployerCubit>()
                                       .dateOfBirthController
-                                      .text,
-                                  emplyeeID: context
-                                      .read<EmployerCubit>()
-                                      .employeeIDController
-                                      .text,
+                                      .text,                                
                                   jobTitle: context
                                       .read<EmployerCubit>()
                                       .selectedJobTitle
@@ -230,12 +225,20 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
                                       .read<EmployerCubit>()
                                       .selectedBranch
                                       .toString(),
-                                  materialStatus: 'materialStatus',
+                                  materialStatus: context
+                                      .read<EmployerCubit>()
+                                      .selectedMaterail
+                                      .toString(),
                                   gender: context
                                       .read<EmployerCubit>()
                                       .selectedGender
                                       .toString(),
-                                  role: "EMPLOYER",
+                                  role: "EMPLOYER", cvee: CVEE(
+                                    copoun: context
+                                        .read<EmployerCubit>()
+                                        .cveeController
+                                        .text,
+                                  ),
                                 ),
                               );
                             }

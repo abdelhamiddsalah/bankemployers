@@ -19,14 +19,16 @@ class EmployerCubit extends Cubit<EmployerState> {
   final confirmPasswordController = TextEditingController();
   final phoneController = TextEditingController();
   final nationalIDController = TextEditingController();
-  final employeeIDController = TextEditingController();
   final cityController = TextEditingController();
+  final pinCodeController = TextEditingController();
   final zipCodeController = TextEditingController();
   final dateOfBirthController = TextEditingController();
   final dateOfHiringController = TextEditingController();
     final formKey = GlobalKey<FormState>();
      final personalInfoFormKey = GlobalKey<FormState>();
    final personalInfoFsormKey = GlobalKey<FormState>();
+   final cveeController = TextEditingController();
+
    // employerInfoFormKey = GlobalKey<FormState>();
   // Dropdown values
   String? selectedJobTitle;
@@ -51,14 +53,16 @@ class EmployerCubit extends Cubit<EmployerState> {
       "zipCode": "12345"
     },
     "dateOfBirth": "1990-05-20",
-    "employeeID": "EMP123",
     "jobTitle": "Software Engineer",
     "department": "IT",
     "dateOfHiring": "2023-01-01",
     "workBranch": "Cairo Branch",
     "maritalStatus": "Single",
     "gender": "MALE",
-    "role": "EMPLOYEE"
+    "role": "EMPLOYEE",
+     "cvee": {
+    "copoun": "MP05" 
+  }
   };
 
   
@@ -79,11 +83,12 @@ class EmployerCubit extends Cubit<EmployerState> {
     confirmPasswordController.dispose();
     phoneController.dispose();
     nationalIDController.dispose();
-    employeeIDController.dispose();
     cityController.dispose();
     zipCodeController.dispose();
     dateOfBirthController.dispose();
+    pinCodeController.dispose();
     dateOfHiringController.dispose();
+    cveeController.dispose(); // جديد
   }
 
   Future<void> signupEmployer(Employee employer) async {
@@ -91,6 +96,22 @@ class EmployerCubit extends Cubit<EmployerState> {
 
     try {
       await employesRepo.signupEmployee(employer).then((response) {
+        response.fold(
+          (failure) => emit(EmployerError(failure.errMessage)),
+          (message) => emit(EmployerSuccess(message)),
+        );
+      });
+    } catch (e) {
+      emit(EmployerError(e.toString()));
+    }
+    emit(EmployerInitial());
+  }
+
+  Future<void> loginEmployee(String email, String pincode) async {
+    emit(EmployerLoading());
+
+    try {
+      await employesRepo.loginEmployee(email, pincode).then((response) {
         response.fold(
           (failure) => emit(EmployerError(failure.errMessage)),
           (message) => emit(EmployerSuccess(message)),

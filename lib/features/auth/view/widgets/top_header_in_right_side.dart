@@ -1,12 +1,13 @@
+import 'package:bankemployers/core/di/getit.dart';
 import 'package:bankemployers/core/styling/colors.dart';
+import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
 import 'package:bankemployers/features/auth/view/widgets/employers_sinin_view_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopHeaderInRightSide extends StatelessWidget {
-  const TopHeaderInRightSide({
-    super.key,
-    required int currentStep,
-  }) : _currentStep = currentStep;
+  const TopHeaderInRightSide({super.key, required int currentStep})
+    : _currentStep = currentStep;
 
   final int _currentStep;
 
@@ -30,15 +31,20 @@ class TopHeaderInRightSide extends StatelessWidget {
               ),
               Text(
                 'Step ${_currentStep + 1} of 3',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[600],
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
             ],
           ),
           TextButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EmployersSininViewBody())),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BlocProvider(
+                  create: (context) => sl<EmployerCubit>(),
+                  child: EmployersSininViewBody(),
+                ),
+              ),
+            ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -46,7 +52,10 @@ class TopHeaderInRightSide extends StatelessWidget {
                 SizedBox(width: 4),
                 Text(
                   'Back to Sign In',
-                  style: TextStyle(color: maincolor, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                    color: maincolor,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ],
             ),
@@ -56,4 +65,3 @@ class TopHeaderInRightSide extends StatelessWidget {
     );
   }
 }
-

@@ -1,8 +1,7 @@
 import 'package:bankemployers/core/styling/colors.dart';
 import 'package:bankemployers/core/widgets/custom_textfield.dart';
 import 'package:bankemployers/features/auth/view/viewmodel/auth_employee_cubit/cubit/employer_cubit.dart';
-import 'package:bankemployers/features/auth/view/widgets/forget_pincode_in_signin.dart';
-import 'package:bankemployers/features/auth/view/widgets/support_in_signin.dart';
+import 'package:bankemployers/features/empleyees/view/empl_dadhboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,45 +39,7 @@ class LoginForm extends StatelessWidget {
                   'Sign in to your employee account',
                   style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                 ),
-                SizedBox(height: 40),
-
-                // Demo credentials info
-                Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: maincolor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: maincolor.withOpacity(0.3)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '🔑 Demo Credentials:',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: maincolor,
-                          fontSize: 14,
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        'Email: ahmed.salah@example.com',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      Text(
-                        'Password: StrongPassword123',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              
                 SizedBox(height: 30),
                 Text(
                   'Email Address',
@@ -109,7 +70,7 @@ class LoginForm extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'Password',
+                  'PinCode',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -120,24 +81,22 @@ class LoginForm extends StatelessWidget {
                 BlocBuilder<EmployerCubit, EmployerState>(
                   builder: (context, state) {
                     return CustomTextField(
-                      hintText: 'Enter your password',
+                      hintText: 'Enter your PinCode',
                       iconData: Icons.lock_outline,
                       obscureText: true,
-                      controller: context.read<EmployerCubit>().passwordController,
+                      controller: context.read<EmployerCubit>().pinCodeController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
+                          return 'Please enter your PinCode';
                         }
                         if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
+                          return 'PinCode must be at least 6 characters';
                         }
                         return null;
                       },
                     );
                   }
                 ),
-                SizedBox(height: 20),
-                ForgetPinCodeInSignin(),
                 SizedBox(height: 30),
                 // Login Button
                 SizedBox(
@@ -154,12 +113,7 @@ class LoginForm extends StatelessWidget {
                         );
                       } else if (state is EmployerSuccess) {
                         // Navigate to home page or show success message
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Login successful!'),
-                            backgroundColor: Colors.green,
-                          ),
-                        );
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => UsersDashboard()));
                         // Navigator.pushReplacementNamed(context, '/home');
                       }
                     },
@@ -167,7 +121,10 @@ class LoginForm extends StatelessWidget {
                       return ElevatedButton(
                         onPressed: isLoading ? null : () async {
                           if (formKey.currentState!.validate()) {
-                          
+                            await context.read<EmployerCubit>().loginEmployee(
+                              context.read<EmployerCubit>().emailController.text,
+                              context.read<EmployerCubit>().pinCodeController.text,
+                            );
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -213,8 +170,6 @@ class LoginForm extends StatelessWidget {
                     }
                   ),
                 ),
-                SizedBox(height: 30),
-                ColumnInSigninSupport(),
               ],
             ),
           ),

@@ -23,4 +23,22 @@ class SingnupEmplyee {
      return Left(Failure(errMessage: 'not response: $e  '));
     }
   }
+
+  Future<Either<Failure, AuthResponse>> loginEmployee(String email, String pincode) async {
+    try {
+      final result = await dioConsumer.post(
+        path: Endpoints.loginEmployee,
+        data: {
+          'email': email,
+          'pincode': pincode,
+        },
+      );
+      return result.fold(
+        (failure) => Left(Failure(errMessage: ' ')),
+        (response) => Right(AuthResponse.fromJson(response.data)),
+      );
+    } catch (e) {
+      return Left(Failure(errMessage: 'not response: $e  '));
+    }
+  }
 }

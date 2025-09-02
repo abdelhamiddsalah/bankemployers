@@ -76,7 +76,7 @@ class _EmploymentInfoStepWidgetState extends State<EmploymentInfoStepWidget> {
             child: CustomTextField(
               hintText: 'Enter employee ID',
               iconData: Icons.badge_outlined,
-              controller: context.read<EmployerCubit>().employeeIDController,
+              controller: context.read<EmployerCubit>().cveeController,
               validator: (value) => value?.isEmpty ?? true ? 'Required' : null,
             ),
           ),

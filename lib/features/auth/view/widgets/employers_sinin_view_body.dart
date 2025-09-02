@@ -98,8 +98,7 @@ class _EmployersSininViewBodyState extends State<EmployersSininViewBody>
                         opacity: _fadeAnimation,
                         child: BlocBuilder<EmployerCubit, EmployerState>(
                           builder: (context, state) {
-                            final isLoading = state is EmployerLoading;
-                            
+                            final isLoading = state is EmployerLoading;                   
                             return LoginForm(
                               formKey: _formKey,
                               isLoading: isLoading,

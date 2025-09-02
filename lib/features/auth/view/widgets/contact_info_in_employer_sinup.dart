@@ -55,7 +55,17 @@ class ContactInfoInEmployerSinup extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 20),
-                
+                CustomTextField(hintText: 'Enter PinCode',
+                 iconData: Icons.lock_outline, 
+                 controller: context.read<EmployerCubit>().pinCodeController,
+                 keyboardType: TextInputType.number,
+                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                 validator: (value) {
+                   if (value?.isEmpty ?? true) return 'Required';
+                   if (value!.length != 6) return 'Must be 6 digits';
+                   return null;
+                 },
+                 ),
                 Row(
                   children: [
                     Expanded(
