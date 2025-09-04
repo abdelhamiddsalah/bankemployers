@@ -1,5 +1,4 @@
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/auth/view/employer_sinup_view.dart';
 import 'package:bankemployers/features/cvs/view/cv_upload_page.dart';
 import 'package:flutter/material.dart';
 
