@@ -16,9 +16,12 @@ class AllCvSModel {
   });
 
   factory AllCvSModel.fromJson(Map<String, dynamic> json) {
+      String filePath = json['file'] ?? '';
+    String fileUrl = filePath.replaceFirst('static/', ''); // يشيل static/
+    fileUrl = "http://localhost:8080/$fileUrl"; // يضيف baseUrl
     return AllCvSModel(
       id: json['id'] as int,
-      file: json['file'] as String,
+      file: fileUrl,
       resultCv: json['resultCv'] as String,
       copoun: json['copoun'] ??"",
       salary: (json['salary'] != null) ? (json['salary'] as num).toDouble() : 0.0,

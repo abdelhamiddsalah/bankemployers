@@ -30,7 +30,6 @@ class _AllCVsScreenState extends State<AllCVsScreen>
   late Animation<double> _slideAnimation;
 
   String selectedFilter = 'All';
-  TextEditingController searchController = TextEditingController();
   AllCvSModel? selectedCV;
 
   @override
@@ -59,7 +58,6 @@ class _AllCVsScreenState extends State<AllCVsScreen>
   @override
   void dispose() {
     _animationController.dispose();
-    searchController.dispose();
     super.dispose();
   }
 

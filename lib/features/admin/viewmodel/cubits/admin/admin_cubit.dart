@@ -3,6 +3,7 @@ import 'package:bankemployers/features/admin/data/repos/admin_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part 'admin_state.dart';
 
@@ -23,5 +24,12 @@ class AdminCubit extends Cubit<AdminState> {
       (failure) => emit(AdminError(errorMessage: failure.errMessage)),
       (message) => emit(AdminLoaded(message: message)),
     );
+  }
+
+  Future<void> openPdfInBrowser(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }
