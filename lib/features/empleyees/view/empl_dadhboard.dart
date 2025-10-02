@@ -9,6 +9,7 @@ class UsersDashboard extends StatefulWidget {
   const UsersDashboard({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _UsersDashboardState createState() => _UsersDashboardState();
 }
 
@@ -38,7 +39,6 @@ class _UsersDashboardState extends State<UsersDashboard> {
       ),
       body: Row(
         children: [
-          // Sidebar
           Container(
             width: 250,
             color: Colors.white,

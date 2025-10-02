@@ -66,9 +66,9 @@ class UserRow extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '12',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                Text(
+                  user.account?.accountNumber ?? 'No Account',
+                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
                 ),
                 Text(
                   'ID: ${user.id}',
@@ -82,32 +82,42 @@ class UserRow extends StatelessWidget {
           Expanded(
             child: Container(
               alignment: Alignment.centerLeft,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: maincolor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  user.account?.accountType ?? '',
-                  style: TextStyle(
-                    color: maincolor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
+              child: user.account != null
+                  ? Container(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: maincolor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        user.account!.accountType,
+                        style: TextStyle(
+                          color: maincolor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )
+                  : Text(
+                      'No Account',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                        fontSize: 12,
+                      ),
+                    ),
             ),
           ),
           // Balance
           Expanded(
             child: Text(
-              '${user.account?.balance ?? '0'} EGP',
+              user.account != null 
+                  ? '${user.account!.balance.toStringAsFixed(2)} EGP'
+                  : '0.00 EGP',
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
-                color: Colors.green[700],
+                color: user.account != null ? Colors.green[700] : Colors.grey[500],
               ),
             ),
           ),
@@ -175,11 +185,13 @@ class UserRow extends StatelessWidget {
                   _buildDetailRow('Email:', user.email),
                   _buildDetailRow('Phone:', user.phoneNumber),
                   _buildDetailRow('Address:', user.address.city),
-                  _buildDetailRow('Account Number:', user.account?.accountNumber ?? ''),
-                  _buildDetailRow('Account Type:', user.account?.accountType ?? ''),
+                  _buildDetailRow('Gender:', user.gender ?? 'N/A'),
+                  _buildDetailRow('Marital Status:', user.maritalStatus ?? 'N/A'),
+                  _buildDetailRow('Account Number:', user.account?.accountNumber ?? 'No Account'),
+                  _buildDetailRow('Account Type:', user.account?.accountType ?? 'N/A'),
                   _buildDetailRow(
                     'Balance:',
-                    '${user.account?.balance ?? '0'} EGP',
+                    user.account != null ? '${user.account!.balance.toStringAsFixed(2)} EGP' : 'N/A',
                   ),
                 ],
               ),

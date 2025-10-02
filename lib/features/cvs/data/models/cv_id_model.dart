@@ -20,9 +20,9 @@ class CvIdModel {
       id: json['id'] as int,
       file: json['file'] as String,
       resultCv: json['resultCv'] as String,
-      copoun: json['copoun'] as String?, // ممكن تكون null
-      salary: (json['salary'] != null) ? (json['salary'] as num).toDouble() : null,
-      employer: json['employer'] as String?, // ممكن تكون null
+      copoun: json['copoun'] as String?,
+      salary: json['salary'] != null ? (json['salary'] as num).toDouble() : null,
+      employer: json['employer'] as String?,
     );
   }
 

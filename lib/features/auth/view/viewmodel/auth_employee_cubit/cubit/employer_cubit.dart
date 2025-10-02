@@ -5,6 +5,7 @@ import 'package:bankemployers/features/auth/data/repo/singnup_emplyee.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'employer_state.dart';
 
@@ -28,6 +29,7 @@ class EmployerCubit extends Cubit<EmployerState> {
      final personalInfoFormKey = GlobalKey<FormState>();
    final personalInfoFsormKey = GlobalKey<FormState>();
    final cveeController = TextEditingController();
+   final materialstate= TextEditingController();
 
    // employerInfoFormKey = GlobalKey<FormState>();
   // Dropdown values
@@ -91,35 +93,47 @@ class EmployerCubit extends Cubit<EmployerState> {
     cveeController.dispose(); // جديد
   }
 
-  Future<void> signupEmployer(Employee employer) async {
-    emit(EmployerLoading());
+  
+Future<void> signupEmployer(Employee employer) async {
+  emit(EmployerLoading());
 
-    try {
-      await employesRepo.signupEmployee(employer).then((response) {
-        response.fold(
-          (failure) => emit(EmployerError(failure.errMessage)),
-          (message) => emit(EmployerSuccess(message)),
-        );
-      });
-    } catch (e) {
-      emit(EmployerError(e.toString()));
-    }
-    emit(EmployerInitial());
+  try {
+    await employesRepo.signupEmployee(employer).then((response) async {
+      response.fold(
+        (failure) => emit(EmployerError(failure.errMessage)),
+        (authResponse) async {
+          // ✅ Save token
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('signup_token', authResponse.token );
+          emit(EmployerSuccess(authResponse));
+        },
+      );
+    });
+  } catch (e) {
+    emit(EmployerError(e.toString()));
   }
+  emit(EmployerInitial());
+}
 
-  Future<void> loginEmployee(String email, String pincode) async {
-    emit(EmployerLoading());
+Future<void> loginEmployee(String email, String pincode) async {
+  emit(EmployerLoading());
 
-    try {
-      await employesRepo.loginEmployee(email, pincode).then((response) {
-        response.fold(
-          (failure) => emit(EmployerError(failure.errMessage)),
-          (message) => emit(EmployerSuccess(message)),
-        );
-      });
-    } catch (e) {
-      emit(EmployerError(e.toString()));
-    }
-    emit(EmployerInitial());
+  try {
+    await employesRepo.loginEmployee(email, pincode).then((response) async {
+      response.fold(
+        (failure) => emit(EmployerError(failure.errMessage)),
+        (authResponse) async {
+          // ✅ Save token
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('signup_token', authResponse.token);
+          emit(EmployerSuccess(authResponse));
+        },
+      );
+    });
+  } catch (e) {
+    emit(EmployerError(e.toString()));
   }
+  emit(EmployerInitial());
+}
+
 }

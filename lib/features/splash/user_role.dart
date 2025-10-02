@@ -1,7 +1,13 @@
 import 'package:bankemployers/core/styling/colors.dart';
+import 'package:bankemployers/features/auth/data/repo/singnup_emplyee.dart';
+import 'package:bankemployers/features/auth/view/employer_signin_view.dart';
 import 'package:bankemployers/features/auth/view/employer_sinup_view.dart';
 import 'package:bankemployers/features/cvs/view/cv_upload_page.dart';
+import 'package:bankemployers/features/cvs/view/widgets/file_upload_section.dart';
+import 'package:bankemployers/features/empleyees/view/empl_dadhboard.dart';
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRoleSelectionScreen extends StatefulWidget {
   const UserRoleSelectionScreen({super.key});
@@ -76,12 +82,37 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
     });
   }
 
-  void _navigateToEmployerLogin() {
+
+void _navigateToEmployerLogin() async {
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('signup_token');
+
+  if (token != null && token.isNotEmpty) {
+    // ✅ تحقق هل التوكن انتهت صلاحيته
+    bool hasExpired = JwtDecoder.isExpired(token);
+
+    if (hasExpired) {
+      // ❌ لو انتهت الصلاحية → يروح للـ Signup
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CVUploadPage()),
+      );
+    } else {
+      // ✅ لسه صالحة → يروح للـ Dashboard
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const UsersDashboard()),
+      );
+    }
+  } else {
+    // ❌ لو مفيش توكن أساسًا → Signup
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) =>CVUploadPage()),
+      MaterialPageRoute(builder: (context) => const CVUploadPage()),
     );
   }
+}
+
 
   void _navigateToAdminLogin() {
     // Replace with your actual navigation
@@ -349,8 +380,6 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
                 ),
               ),
               SizedBox(height: 20),
-
-              // Title
               Text(
                 title,
                 style: TextStyle(
@@ -361,8 +390,6 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 12),
-
-              // Subtitle
               Text(
                 subtitle,
                 style: TextStyle(
@@ -373,8 +400,6 @@ class _UserRoleSelectionScreenState extends State<UserRoleSelectionScreen>
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
-
-              // Selection Indicator
               _selectedRole == 'employer'
                   ? Container(
                       padding: EdgeInsets.symmetric(

@@ -100,10 +100,8 @@ class UploadCubit extends Cubit<UploadState> {
     emit(UploadInitial()); // مفيش CV
     return;
   }
-
   try {
     emit(UploadLoading());
-
     final response = await employesRepo.getCVById(cvId);
     response.fold(
       (failure) => emit(UploadFailure(failure.errMessage)),

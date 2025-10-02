@@ -10,8 +10,8 @@ class UserInEmployee {
   final DateTime dateOfBirth;
   final String pinCode;
   final Address address;
-  final String gender;
-  final String maritalStatus;
+  final String? gender;          // <-- nullable
+  final String? maritalStatus;   // <-- nullable
   final AccountInEmployee? account;
   final List<DepositInEmployee> deposits;
 
@@ -27,9 +27,9 @@ class UserInEmployee {
     required this.dateOfBirth,
     required this.pinCode,
     required this.address,
-    required this.gender,
-    required this.maritalStatus,
-    required this.account,
+    this.gender,               // nullable
+    this.maritalStatus,        // nullable
+    this.account,
     required this.deposits,
   });
 
@@ -46,9 +46,11 @@ class UserInEmployee {
       dateOfBirth: DateTime.parse(json["dateOfBirth"]),
       pinCode: json["pinCode"],
       address: Address.fromJson(json["address"]),
-      gender: json["gender"],
-      maritalStatus: json["maritalStatus"],
-      account: json["account"] != null ? AccountInEmployee.fromJson(json["account"]) : null,
+      gender: json["gender"],                   // ممكن يكون null
+      maritalStatus: json["maritalStatus"],    // ممكن يكون null
+      account: json["account"] != null
+          ? AccountInEmployee.fromJson(json["account"])
+          : null,
       deposits: (json["deposits"] as List)
           .map((d) => DepositInEmployee.fromJson(d))
           .toList(),

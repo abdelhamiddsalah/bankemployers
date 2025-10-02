@@ -59,7 +59,11 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
   void _nextStep() {
     if (_currentStep < 2) {
       if (_currentStep == 0) {
-        if (context.read<EmployerCubit>().personalInfoFormKey.currentState!.validate()) {
+        if (context
+            .read<EmployerCubit>()
+            .personalInfoFormKey
+            .currentState!
+            .validate()) {
           _pageController.nextPage(
             duration: Duration(milliseconds: 300),
             curve: Curves.easeInOut,
@@ -69,7 +73,11 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
           });
         }
       } else if (_currentStep == 1) {
-        if (context.read<EmployerCubit>().personalInfoFsormKey.currentState!.validate()) {
+        if (context
+            .read<EmployerCubit>()
+            .personalInfoFsormKey
+            .currentState!
+            .validate()) {
           _pageController.nextPage(
             duration: Duration(milliseconds: 300),
             curve: Curves.easeInOut,
@@ -79,14 +87,14 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
           });
         }
       } else {
-  _pageController.nextPage(
-    duration: Duration(milliseconds: 300),
-    curve: Curves.easeInOut,
-  );
-  setState(() {
-    _currentStep++;
-  });
-}
+        _pageController.nextPage(
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+        setState(() {
+          _currentStep++;
+        });
+      }
     }
   }
 
@@ -108,12 +116,18 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
       body: BlocConsumer<EmployerCubit, EmployerState>(
         listener: (context, state) {
           if (state is EmployerSuccess) {
-              CacheHelper.sharedPreferences.setString('token', state.authResponse.token);
-           Navigator.push(context, MaterialPageRoute(builder: (context) => UsersDashboard()));
-          }else if (state is EmployerError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Error: ${state.message}')),
+            CacheHelper.sharedPreferences.setString(
+              'token',
+              state.authResponse.token,
             );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UsersDashboard()),
+            );
+          } else if (state is EmployerError) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text('Error: ${state.message}')));
           } else if (state is EmployerLoading) {
             setState(() {
               _isLoading = true;
@@ -167,78 +181,83 @@ class _EmployeeSignupScreenState extends State<EmployeeSignupScreen>
                                 .validate()) {
                               context.read<EmployerCubit>().signupEmployer(
                                 Employee(
-                                  firstName: context
-                                      .read<EmployerCubit>()
-                                      .firstNameController
-                                      .text,
-                                  lastName: context
-                                      .read<EmployerCubit>()
-                                      .lastNameController
-                                      .text,
-                                  email: context
-                                      .read<EmployerCubit>()
-                                      .emailController
-                                      .text,
-                                  password: context
-                                      .read<EmployerCubit>()
-                                      .passwordController
-                                      .text,
-                                  phoneNumber: context
-                                      .read<EmployerCubit>()
-                                      .phoneController
-                                      .text,
-                                  nationalID: context
-                                      .read<EmployerCubit>()
-                                      .nationalIDController
-                                      .text,
-                                  pincode: context
-                                      .read<EmployerCubit>()
-                                      .phoneController
-                                      .text,
-                                  address: Address(
-                                    city: context
+                                  user: User(
+                                    firstName: context
                                         .read<EmployerCubit>()
-                                        .cityController
+                                        .firstNameController
                                         .text,
-                                    zipCode: context
+                                    lastName: context
                                         .read<EmployerCubit>()
-                                        .zipCodeController
+                                        .lastNameController
                                         .text,
+                                    email: context
+                                        .read<EmployerCubit>()
+                                        .emailController
+                                        .text,
+                                    password: context
+                                        .read<EmployerCubit>()
+                                        .passwordController
+                                        .text,
+                                    phoneNumber: context
+                                        .read<EmployerCubit>()
+                                        .phoneController
+                                        .text,
+                                    nationalId: context
+                                        .read<EmployerCubit>()
+                                        .nationalIDController
+                                        .text,
+                                    pinCode: context
+                                        .read<EmployerCubit>()
+                                        .pinCodeController
+                                        .text,
+                                    address: Address(
+                                      city: context
+                                          .read<EmployerCubit>()
+                                          .cityController
+                                          .text,
+                                      zipCode: context
+                                          .read<EmployerCubit>()
+                                          .zipCodeController
+                                          .text,
+                                    ),
+                                    dateOfBirth: context
+                                        .read<EmployerCubit>()
+                                        .dateOfBirthController
+                                        .text,
+                                    maritalStatus: context
+                                        .read<EmployerCubit>()
+                                        .materialstate
+                                        .text,
+                                    gender: context
+                                        .read<EmployerCubit>()
+                                        .selectedGender!,
                                   ),
-                                  dateOfBirth: context
-                                      .read<EmployerCubit>()
-                                      .dateOfBirthController
-                                      .text,                                
                                   jobTitle: context
                                       .read<EmployerCubit>()
-                                      .selectedJobTitle
-                                      .toString(),
+                                      .selectedJobTitle!,
                                   department: context
                                       .read<EmployerCubit>()
-                                      .selectedDapertment
-                                      .toString(),
+                                      .selectedDapertment!,
                                   dateOfHiring: context
                                       .read<EmployerCubit>()
                                       .dateOfHiringController
                                       .text,
                                   workBranch: context
                                       .read<EmployerCubit>()
-                                      .selectedBranch
-                                      .toString(),
-                                  materialStatus: context
-                                      .read<EmployerCubit>()
-                                      .selectedMaterail
-                                      .toString(),
-                                  gender: context
-                                      .read<EmployerCubit>()
-                                      .selectedGender
-                                      .toString(),
-                                  role: "EMPLOYER", cvee: CVEE(
-                                    copoun: context
-                                        .read<EmployerCubit>()
-                                        .cveeController
-                                        .text,
-                                  ),
+                                      .selectedBranch!,
+                                  cvee:
+                                      context
+                                          .read<EmployerCubit>()
+                                          .cveeController
+                                          .text
+                                          .isNotEmpty
+                                      ? CVEE(
+                                          copoun: context
+                                              .read<EmployerCubit>()
+                                              .cveeController
+                                              .text,
+                                        )
+                                      : CVEE(copoun: 'No CVEE'),
                                 ),
                               );
                             }
