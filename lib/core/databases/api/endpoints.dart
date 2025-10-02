@@ -20,7 +20,7 @@ class Endpoints {
   static const String allUsers = "admin/allUsers";
   static String deleteUser(String id) => "admin/user/$id";
   static String getCvById(int id) => "admin/cv/$id";
-  static const String allCvs = "admin/allCvs";
+  static const String allCvs = "admin/cvs";
 static String updateCvStatus({
   required int id,
   required String result,

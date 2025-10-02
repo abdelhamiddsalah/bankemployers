@@ -1,3 +1,4 @@
+import 'package:bankemployers/core/databases/cache/cache_helper.dart';
 import 'package:bankemployers/features/auth/view/employer_sinup_view.dart';
 import 'package:bankemployers/features/cvs/data/models/cv_id_model.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class ApprovedWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          
+
           // Congratulations Text
           Text(
             "Congratulations! 🎉",
@@ -54,9 +55,9 @@ class ApprovedWidget extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          
+
           const SizedBox(height: 40),
-          
+
           // Details Card
           Container(
             width: double.infinity,
@@ -95,7 +96,10 @@ class ApprovedWidget extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.card_giftcard, color: Colors.blue.shade600),
+                          Icon(
+                            Icons.card_giftcard,
+                            color: Colors.blue.shade600,
+                          ),
                           const SizedBox(width: 8),
                           Text(
                             "Coupon Code",
@@ -109,7 +113,10 @@ class ApprovedWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
@@ -128,9 +135,9 @@ class ApprovedWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Salary Section
                 Container(
                   width: double.infinity,
@@ -145,7 +152,10 @@ class ApprovedWidget extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.attach_money, color: Colors.green.shade600),
+                          Icon(
+                            Icons.attach_money,
+                            color: Colors.green.shade600,
+                          ),
                           const SizedBox(width: 8),
                           Text(
                             "Offered Salary",
@@ -172,16 +182,20 @@ class ApprovedWidget extends StatelessWidget {
               ],
             ),
           ),
-          
+
           const SizedBox(height: 40),
-          
+
           // Sign Up Button
           SizedBox(
             width: double.infinity,
-           // constraints: const BoxConstraints(maxWidth: 300),
+            // constraints: const BoxConstraints(maxWidth: 300),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => EmployerSinupView()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmployerSinupView()),
+                );
+                CacheHelper.sharedPreferences.remove( 'userId');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green.shade600,
@@ -200,18 +214,15 @@ class ApprovedWidget extends StatelessWidget {
                   SizedBox(width: 12),
                   Text(
                     "Proceed to Sign Up",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
           ),
-          
+
           const SizedBox(height: 20),
-          
+
           // Additional Info
           Text(
             "Complete your registration to join our team!",
@@ -227,5 +238,3 @@ class ApprovedWidget extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,9 +1,7 @@
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/auth/data/repo/singnup_emplyee.dart';
-import 'package:bankemployers/features/auth/view/employer_signin_view.dart';
-import 'package:bankemployers/features/auth/view/employer_sinup_view.dart';
+
 import 'package:bankemployers/features/cvs/view/cv_upload_page.dart';
-import 'package:bankemployers/features/cvs/view/widgets/file_upload_section.dart';
+
 import 'package:bankemployers/features/empleyees/view/empl_dadhboard.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';

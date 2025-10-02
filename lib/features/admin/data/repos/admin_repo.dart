@@ -3,6 +3,7 @@ import 'package:bankemployers/core/databases/api/endpoints.dart';
 import 'package:bankemployers/core/errors/expentions.dart';
 import 'package:bankemployers/core/errors/failure.dart';
 import 'package:bankemployers/features/admin/data/models/admin_model.dart';
+import 'package:bankemployers/features/admin/data/models/all_cvs_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -53,6 +54,38 @@ class AdminRepo {
       } else {
         return Left(Failure(errMessage: 'An unexpected error occurred: ${e.toString()}'));
       }
+    }
+  }
+
+  Future<Either<Failure, List<AllCvSModel>>> allCVs() async {
+    try {
+      final response = await dioConsumer.get(path: Endpoints.allCvs);
+      return response.fold(
+        (l) => Left(Failure(errMessage: l)),
+        (r) {
+          final List<dynamic> dataList = r.data as List<dynamic>;
+          final List<AllCvSModel> cvsList = dataList.map((item) => AllCvSModel.fromJson(item as Map<String, dynamic>)).toList();
+          return Right(cvsList);
+        },
+      );
+    } catch (e) {
+      return Left(Failure(errMessage: 'Network error: $e'));
+    }
+  }
+
+  Future<Either<Failure, void>> updateCvStatus({
+    required int id,
+    required String result,
+    required double salary,
+    required String copoun,
+  }) async {
+    try {
+      final response = await dioConsumer.put(
+        path: Endpoints.updateCvStatus(id: id, result: result, salary: salary, copoun: copoun),
+      );
+      return response.fold((l) => Left(Failure(errMessage: l)), (r) => Right(null));
+    } catch (e) {
+      return Left(Failure(errMessage: 'Network error: $e'));
     }
   }
 }
