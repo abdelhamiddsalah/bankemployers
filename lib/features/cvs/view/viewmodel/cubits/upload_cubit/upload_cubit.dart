@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:bankemployers/core/databases/cache/cache_helper.dart';
 import 'package:bankemployers/features/cvs/data/models/cv_id_model.dart';
-import 'package:bankemployers/features/empleyees/data/repo/employes_repo.dart';
+import 'package:bankemployers/features/empleyees_dashboard/data/repo/employes_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';

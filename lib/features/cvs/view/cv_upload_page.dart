@@ -1,5 +1,5 @@
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/empleyees/view/widgets/form_panal.dart';
+import 'package:bankemployers/features/empleyees_dashboard/view/widgets/form_panal.dart';
 
 import 'package:flutter/material.dart';
 

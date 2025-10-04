@@ -1,6 +1,5 @@
 import 'package:bankemployers/core/di/getit.dart';
-import 'package:bankemployers/features/admin/view/all_cvs_view.dart';
-import 'package:bankemployers/features/splash/splash_view.dart';
+import 'package:bankemployers/features/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BANKY',
-      home: AllCVsScreen(),
+      home: SplashScreen(),
           );
   }
 }
