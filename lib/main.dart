@@ -1,4 +1,5 @@
 import 'package:bankemployers/core/di/getit.dart';
+import 'package:bankemployers/core/routing/app_routing.dart';
 import 'package:bankemployers/features/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -9,13 +10,13 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'BANKY',
-      home: SplashScreen(),
-          );
+      routerConfig: AppRouting.router,
+    );
   }
 }

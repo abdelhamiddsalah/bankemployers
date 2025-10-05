@@ -103,8 +103,7 @@ Navigator.push(context, MaterialPageRoute(builder: (_) => EmployeeProfileView())
   }
 
   void _navigateToAdminLogin() {
-    // Replace with your actual navigation
-    print('Navigate to Admin Login');
+    context.go(Routes.adminLogin);
   }
 
   @override

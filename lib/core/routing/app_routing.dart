@@ -2,8 +2,10 @@ import 'package:bankemployers/core/routing/routes.dart';
 import 'package:bankemployers/features/cvs/view/cv_upload_page.dart';
 import 'package:bankemployers/features/empleyees_dashboard/view/empl_dadhboard.dart';
 import 'package:bankemployers/features/employers_profile/view/empl_profile_view.dart';
+import 'package:bankemployers/features/home/admin_dashboard.dart';
 import 'package:bankemployers/features/splash/view/splash_view.dart';
 import 'package:bankemployers/features/splash/view/user_role.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouting {
@@ -11,7 +13,22 @@ class AppRouting {
     initialLocation: Routes.splah,
     routes: <GoRoute>[
       GoRoute(path: Routes.splah, builder: (context, state) => SplashScreen()),
-
+ GoRoute(
+      path:Routes.userCoice,
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: UserRoleSelectionScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 800),
+        );
+      },
+    ),
       GoRoute(
         path: Routes.employeeDashboard,
         builder: (context, state) => UsersDashboard(),
@@ -27,6 +44,10 @@ class AppRouting {
       GoRoute(
         path: Routes.employersProfile,
         builder: (context, state) => EmployeeProfileView(),
+      ),
+      GoRoute(
+        path: Routes.adminLogin,
+        builder: (context, state) => AdminDashboard(),
       ),
     ],
   );

@@ -1,6 +1,7 @@
+import 'package:bankemployers/core/routing/routes.dart';
 import 'package:bankemployers/core/styling/colors.dart';
-import 'package:bankemployers/features/splash/view/user_role.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -117,20 +118,8 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     }
     
     // الانتقال إلى الشاشة الرئيسية
-    await Future.delayed(Duration(milliseconds: 800));
-    Navigator.pushReplacement(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => UserRoleSelectionScreen(),
-        transitionDuration: Duration(milliseconds: 800),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
-      ),
-    );
+    await Future.delayed(Duration(milliseconds: 500));
+GoRouter.of(context).go(Routes.userCoice);
   }
   
   @override

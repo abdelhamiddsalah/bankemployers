@@ -5,4 +5,5 @@ class Routes {
   static const String uploadCV = '/onboarding';
   static const String adminDashboard = '/adminDashboard';
   static const String employersProfile = '/employersProfile';
+  static const String adminLogin = '/adminLogin';
 } 
