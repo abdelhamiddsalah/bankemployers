@@ -1,6 +1,8 @@
 
 import 'package:bankemployers/features/admin/data/models/all_cvs_model.dart';
+import 'package:bankemployers/features/admin/viewmodel/cvs/cubit/cvs_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListHeader extends StatelessWidget {
   const ListHeader({super.key, required this.cvs});
@@ -46,7 +48,9 @@ class ListHeader extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<CvsCubit>().getAllCvs();
+            },
             icon: Icon(Icons.refresh, color: Colors.white),
           ),
         ],

@@ -30,9 +30,9 @@ class CVDetails extends StatelessWidget {
                   SizedBox(height: 32),
                   StatusSection(cv: cv!),
                   SizedBox(height: 32),
-                  SalarySection(cv: cv!),
+                 cv!.resultCv == 'rejected' ? Container() : SalarySection(cv: cv!),
                   SizedBox(height: 32),
-                  CopunSection(cv: cv!),
+               cv!.resultCv == 'rejected' ?   Container(): CopunSection(cv: cv!),
                   SizedBox(height: 32),
                   SizedBox(
                     width: double.infinity,

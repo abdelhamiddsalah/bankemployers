@@ -1,9 +1,11 @@
+import 'package:bankemployers/core/routing/routes.dart';
 import 'package:bankemployers/core/widgets/custom_textfield.dart';
 import 'package:bankemployers/features/admin/view/widgets/admin_button_signup.dart';
 import 'package:bankemployers/features/admin/viewmodel/cubits/admin/admin_cubit.dart';
-import 'package:bankemployers/features/home/admin_dashboard.dart';
+import 'package:bankemployers/features/admin/view/admin_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AdminLoginForm extends StatelessWidget {
   const AdminLoginForm({super.key});
@@ -87,7 +89,7 @@ class AdminLoginForm extends StatelessWidget {
                 BlocConsumer<AdminCubit, AdminState>(
                   listener: (context, state) {
                     if (state is AdminLoaded) {
-                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminDashboard()));
+                      GoRouter.of( context).go(Routes.adminDashboard);
                     }
                     if (state is AdminError) {
                       // عند حدوث خطأ

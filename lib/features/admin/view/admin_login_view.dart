@@ -6,14 +6,16 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AdminView extends StatelessWidget {
-  const AdminView({super.key});
+class AdminLoginView extends StatelessWidget {
+  const AdminLoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => AdminCubit(adminRepo: AdminRepo(dioConsumer: DioConsumer(dio: Dio()))),
+        create: (context) => AdminCubit(
+          adminRepo: AdminRepo(dioConsumer: DioConsumer(dio: Dio())),
+        ),
         child: AdminViewBody(),
       ),
     );

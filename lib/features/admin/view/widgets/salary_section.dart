@@ -43,8 +43,10 @@ class SalarySection extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
+                // ignore: deprecated_member_use
                 color: Colors.grey.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
+                // ignore: deprecated_member_use
                 border: Border.all(color: Colors.grey.withOpacity(0.3)),
               ),
               child: Row(
@@ -93,7 +95,7 @@ class SalarySection extends StatelessWidget {
                         onPressed: () {
                           context.read<CvsCubit>().putCvStatus(
                             cv.id,
-                            cv.resultCv,
+                             'approved',
                             double.tryParse(
                                   context
                                       .read<CvsCubit>()

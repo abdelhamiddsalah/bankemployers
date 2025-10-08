@@ -83,7 +83,7 @@ class EmployesRepo {
             usersList = dataMap['results'];
           }
           
-          if (usersList != null && usersList is List) {
+          if (usersList != null ) {
             final users = usersList
                 .map((json) {
                   try {

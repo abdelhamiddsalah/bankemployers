@@ -93,7 +93,7 @@ class CopunSection extends StatelessWidget {
                         onPressed: () {
                           context.read<CvsCubit>().putCvStatus(
                             cv.id,
-                            cv.resultCv,
+                            'approved',
                             cv.salary,
                       context.read<CvsCubit>().copounController.text,
                           );

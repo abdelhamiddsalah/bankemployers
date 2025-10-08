@@ -119,7 +119,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     
     // الانتقال إلى الشاشة الرئيسية
     await Future.delayed(Duration(milliseconds: 500));
-GoRouter.of(context).go(Routes.userCoice);
+GoRouter.of(context).go(Routes.userChoice);
   }
   
   @override
